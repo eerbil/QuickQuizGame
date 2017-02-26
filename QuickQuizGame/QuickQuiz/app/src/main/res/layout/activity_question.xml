@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_question"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.eliferbil.quickquiz.QuestionActivity">
+
+    <TextView
+        android:text="Which Roman Emperor built a massive wall across Northern Britain in 122 A.D.?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/question"
+        android:layout_marginTop="57dp"
+        android:textSize="16sp"
+        android:layout_below="@+id/timer"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="60"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:id="@+id/timer"
+        android:textSize="50sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="This question is worth 100 points."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/points" />
+
+    <Button
+        android:text="Juilus Caesar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="33dp"
+        android:layout_marginStart="33dp"
+        android:id="@+id/answer2"
+        android:layout_alignBaseline="@+id/answer1"
+        android:layout_alignBottom="@+id/answer1"
+        android:layout_toRightOf="@+id/answer1"
+        android:layout_toEndOf="@+id/answer1" />
+
+    <Button
+        android:text="Hadrian"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:id="@+id/answer1"
+        android:layout_marginLeft="43dp"
+        android:layout_marginStart="43dp"
+        android:layout_below="@+id/question"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Nero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/answer1"
+        android:layout_alignRight="@+id/answer1"
+        android:layout_alignEnd="@+id/answer1"
+        android:layout_marginTop="31dp"
+        android:id="@+id/answer3" />
+
+    <Button
+        android:text="Marcus Antonius"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/answer4"
+        android:layout_alignBaseline="@+id/answer3"
+        android:layout_alignBottom="@+id/answer3"
+        android:layout_toRightOf="@+id/answer3"
+        android:layout_toEndOf="@+id/answer3"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp" />
+</RelativeLayout>
