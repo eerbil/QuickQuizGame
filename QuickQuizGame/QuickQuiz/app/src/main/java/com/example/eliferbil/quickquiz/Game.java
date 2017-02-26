@@ -11,6 +11,9 @@ import java.util.List;
 public class Game {
 
     private User user;
+    private boolean gameContinued; //TODO: username girilince true olacak, sorular bitince false olacak, bittiği zaman scoreActivity açılacak
+                                   //TODO: app arkaplana geçince veya appten çıkıldığında kaldığı yerden kullanılması için de kullanılabilir
+    private int questionsAnswered; //TODO: her soru cevaplandığında arttırılacak, 15 olduğunda scoreActivity açılacak
     private ArrayList<Question> historyList;
     private ArrayList<Question> musicList;
     private ArrayList<Question> foodList;
@@ -19,6 +22,8 @@ public class Game {
 
     protected Game(){
         this.user = null;
+        this.gameContinued = false;
+        questionsAnswered = 0;
         this.historyList = generateHistoryQuestions();
         this.foodList = generateFoodQuestions();
         this.musicList = generateMusicQuestions();

@@ -64,6 +64,19 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="activity_username.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_username.xml">
+          <provider selected="true" editor-type-id="android-designer2">
+            <state />
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="435">
+              <caret line="29" column="49" selection-start-line="29" selection-start-column="49" selection-end-line="29" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="activity_score.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_score.xml">
           <provider selected="true" editor-type-id="android-designer2">
@@ -90,63 +103,37 @@
       <file leaf-file-name="QuestionActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eliferbil/quickquiz/QuestionActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+            <state relative-caret-position="345">
+              <caret line="26" column="22" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
               <folding>
                 <element signature="e#651#1120#0" expanded="true" />
+                <element signature="e#1119#1120#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider editor-type-id="android-manifest">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="18" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
+            <state relative-caret-position="255">
+              <caret line="17" column="85" selection-start-line="17" selection-start-column="85" selection-end-line="17" selection-end-column="85" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Answer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eliferbil/quickquiz/Answer.java">
+      <file leaf-file-name="UsernameActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eliferbil/quickquiz/UsernameActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="27">
-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+            <state relative-caret-position="180">
+              <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="29" />
               <folding>
-                <element signature="docComment;class#Answer#0" expanded="false" />
-                <element signature="e#413#414#0" expanded="true" />
-                <element signature="e#440#441#0" expanded="true" />
-                <element signature="e#480#481#0" expanded="true" />
-                <element signature="e#512#513#0" expanded="true" />
-                <element signature="e#546#547#0" expanded="true" />
-                <element signature="e#578#579#0" expanded="true" />
-                <element signature="e#625#626#0" expanded="true" />
-                <element signature="e#660#661#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eliferbil/quickquiz/User.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
-              <folding>
-                <element signature="docComment;class#User#0" expanded="false" />
-                <element signature="e#308#309#0" expanded="true" />
-                <element signature="e#339#340#0" expanded="true" />
-                <element signature="e#387#388#0" expanded="true" />
-                <element signature="e#427#428#0" expanded="true" />
-                <element signature="e#456#457#0" expanded="true" />
-                <element signature="e#484#485#0" expanded="true" />
-                <element signature="e#523#524#0" expanded="true" />
-                <element signature="e#557#558#0" expanded="true" />
+                <element signature="e#656#829#0" expanded="true" />
+                <element signature="e#828#829#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -155,8 +142,8 @@
       <file leaf-file-name="GameActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eliferbil/quickquiz/GameActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="10" column="47" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
+            <state relative-caret-position="180">
+              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -165,31 +152,31 @@
       <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eliferbil/quickquiz/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
-              <caret line="58" column="123" selection-start-line="58" selection-start-column="46" selection-end-line="58" selection-end-column="123" />
+            <state relative-caret-position="345">
+              <caret line="35" column="24" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;class#Game#0" expanded="false" />
-                <element signature="e#860#870#0" expanded="true" />
-                <element signature="e#922#930#0" expanded="true" />
-                <element signature="e#1244#1252#0" expanded="true" />
-                <element signature="e#1588#1596#0" expanded="true" />
-                <element signature="e#1987#1995#0" expanded="true" />
-                <element signature="e#2375#2383#0" expanded="true" />
+                <element signature="e#1328#1338#0" expanded="true" />
+                <element signature="e#1390#1398#0" expanded="true" />
+                <element signature="e#1712#1720#0" expanded="true" />
+                <element signature="e#2056#2064#0" expanded="true" />
+                <element signature="e#2455#2463#0" expanded="true" />
+                <element signature="e#2843#2851#0" expanded="true" />
                 <element signature="method#generateMusicQuestions#0;class#Game#0" expanded="false" />
-                <element signature="e#2871#2881#0" expanded="true" />
-                <element signature="e#2933#2941#0" expanded="true" />
-                <element signature="e#3265#3273#0" expanded="true" />
-                <element signature="e#3631#3639#0" expanded="true" />
-                <element signature="e#4016#4024#0" expanded="true" />
-                <element signature="e#4457#4465#0" expanded="true" />
+                <element signature="e#3339#3349#0" expanded="true" />
+                <element signature="e#3401#3409#0" expanded="true" />
+                <element signature="e#3733#3741#0" expanded="true" />
+                <element signature="e#4099#4107#0" expanded="true" />
+                <element signature="e#4484#4492#0" expanded="true" />
+                <element signature="e#4925#4933#0" expanded="true" />
                 <element signature="method#generateFoodQuestions#0;class#Game#0" expanded="false" />
-                <element signature="e#4920#4930#0" expanded="true" />
-                <element signature="e#4982#4990#0" expanded="true" />
-                <element signature="e#5319#5327#0" expanded="true" />
-                <element signature="e#5687#5695#0" expanded="true" />
-                <element signature="e#6022#6030#0" expanded="true" />
-                <element signature="e#6365#6373#0" expanded="true" />
+                <element signature="e#5388#5398#0" expanded="true" />
+                <element signature="e#5450#5458#0" expanded="true" />
+                <element signature="e#5787#5795#0" expanded="true" />
+                <element signature="e#6155#6163#0" expanded="true" />
+                <element signature="e#6490#6498#0" expanded="true" />
+                <element signature="e#6833#6841#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1871,17 +1858,18 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_username.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/eliferbil/quickquiz/Answer.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/eliferbil/quickquiz/Question.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/eliferbil/quickquiz/User.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/eliferbil/quickquiz/GameActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eliferbil/quickquiz/Game.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_game.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_score.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_question.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/eliferbil/quickquiz/QuestionActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eliferbil/quickquiz/Game.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eliferbil/quickquiz/UsernameActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_username.xml" />
       </list>
     </option>
   </component>
@@ -1968,6 +1956,38 @@
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="QuickQuiz" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="quickquiz" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="QuickQuiz" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -1977,7 +1997,7 @@
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="UI_DESIGNER_EDITOR_MODE.NlPaletteManager-NlPreviewForm.SHOW" value="false" />
     <property name="UI_DESIGNER_EDITOR_MODE.NlPropertiesWindowManager-NlEditorPanel.WIDTH" value="251" />
-    <property name="device.picker.selection" value="" />
+    <property name="device.picker.selection" value="192.168.57.101:5555" />
   </component>
   <component name="RecentsManager">
     <key name="android.template.packageName">
@@ -2361,25 +2381,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eliferbil/quickquiz/UsernameActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_username.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="29" column="49" selection-start-line="29" selection-start-column="49" selection-end-line="29" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eliferbil/quickquiz/Question.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -2442,14 +2443,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eliferbil/quickquiz/GameActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="10" column="47" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_question.xml">
       <provider selected="true" editor-type-id="android-designer2">
         <state />
@@ -2458,37 +2451,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eliferbil/quickquiz/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="58" column="123" selection-start-line="58" selection-start-column="46" selection-end-line="58" selection-end-column="123" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;class#Game#0" expanded="false" />
-            <element signature="e#860#870#0" expanded="true" />
-            <element signature="e#922#930#0" expanded="true" />
-            <element signature="e#1244#1252#0" expanded="true" />
-            <element signature="e#1588#1596#0" expanded="true" />
-            <element signature="e#1987#1995#0" expanded="true" />
-            <element signature="e#2375#2383#0" expanded="true" />
-            <element signature="method#generateMusicQuestions#0;class#Game#0" expanded="false" />
-            <element signature="e#2871#2881#0" expanded="true" />
-            <element signature="e#2933#2941#0" expanded="true" />
-            <element signature="e#3265#3273#0" expanded="true" />
-            <element signature="e#3631#3639#0" expanded="true" />
-            <element signature="e#4016#4024#0" expanded="true" />
-            <element signature="e#4457#4465#0" expanded="true" />
-            <element signature="method#generateFoodQuestions#0;class#Game#0" expanded="false" />
-            <element signature="e#4920#4930#0" expanded="true" />
-            <element signature="e#4982#4990#0" expanded="true" />
-            <element signature="e#5319#5327#0" expanded="true" />
-            <element signature="e#5687#5695#0" expanded="true" />
-            <element signature="e#6022#6030#0" expanded="true" />
-            <element signature="e#6365#6373#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2514,6 +2476,53 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eliferbil/quickquiz/ScoreActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eliferbil/quickquiz/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="35" column="24" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#Game#0" expanded="false" />
+            <element signature="e#1328#1338#0" expanded="true" />
+            <element signature="e#1390#1398#0" expanded="true" />
+            <element signature="e#1712#1720#0" expanded="true" />
+            <element signature="e#2056#2064#0" expanded="true" />
+            <element signature="e#2455#2463#0" expanded="true" />
+            <element signature="e#2843#2851#0" expanded="true" />
+            <element signature="method#generateMusicQuestions#0;class#Game#0" expanded="false" />
+            <element signature="e#3339#3349#0" expanded="true" />
+            <element signature="e#3401#3409#0" expanded="true" />
+            <element signature="e#3733#3741#0" expanded="true" />
+            <element signature="e#4099#4107#0" expanded="true" />
+            <element signature="e#4484#4492#0" expanded="true" />
+            <element signature="e#4925#4933#0" expanded="true" />
+            <element signature="method#generateFoodQuestions#0;class#Game#0" expanded="false" />
+            <element signature="e#5388#5398#0" expanded="true" />
+            <element signature="e#5450#5458#0" expanded="true" />
+            <element signature="e#5787#5795#0" expanded="true" />
+            <element signature="e#6155#6163#0" expanded="true" />
+            <element signature="e#6490#6498#0" expanded="true" />
+            <element signature="e#6833#6841#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eliferbil/quickquiz/GameActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_question.xml">
       <provider selected="true" editor-type-id="android-designer2">
         <state />
@@ -2521,6 +2530,39 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eliferbil/quickquiz/QuestionActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="26" column="22" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
+          <folding>
+            <element signature="e#651#1120#0" expanded="true" />
+            <element signature="e#1119#1120#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eliferbil/quickquiz/UsernameActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="29" />
+          <folding>
+            <element signature="e#656#829#0" expanded="true" />
+            <element signature="e#828#829#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="85" selection-start-line="17" selection-start-column="85" selection-end-line="17" selection-end-column="85" />
           <folding />
         </state>
       </provider>
@@ -2536,31 +2578,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eliferbil/quickquiz/ScoreActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eliferbil/quickquiz/QuestionActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
-          <folding>
-            <element signature="e#651#1120#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_username.xml">
+      <provider selected="true" editor-type-id="android-designer2">
         <state />
       </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="18" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="49" selection-start-line="29" selection-start-column="49" selection-end-line="29" selection-end-column="49" />
           <folding />
         </state>
       </provider>
