@@ -41,18 +41,6 @@
         android:id="@+id/points" />
 
     <Button
-        android:text="Juilus Caesar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="33dp"
-        android:layout_marginStart="33dp"
-        android:id="@+id/answer2"
-        android:layout_alignBaseline="@+id/answer1"
-        android:layout_alignBottom="@+id/answer1"
-        android:layout_toRightOf="@+id/answer1"
-        android:layout_toEndOf="@+id/answer1" />
-
-    <Button
         android:text="Hadrian"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -85,4 +73,14 @@
         android:layout_toEndOf="@+id/answer3"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp" />
+
+    <Button
+        android:text="Juilus Caesar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/answer2"
+        android:layout_alignBaseline="@+id/answer1"
+        android:layout_alignBottom="@+id/answer1"
+        android:layout_alignLeft="@+id/timer"
+        android:layout_alignStart="@+id/timer" />
 </RelativeLayout>
