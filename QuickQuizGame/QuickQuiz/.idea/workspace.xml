@@ -106,13 +106,13 @@
       <file leaf-file-name="QuestionActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eliferbil/quickquiz/QuestionActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="77" column="13" selection-start-line="77" selection-start-column="13" selection-end-line="77" selection-end-column="13" />
+            <state relative-caret-position="480">
+              <caret line="195" column="26" selection-start-line="195" selection-start-column="26" selection-end-line="195" selection-end-column="26" />
               <folding>
-                <element signature="e#3250#3370#0" expanded="true" />
-                <element signature="e#3369#3370#0" expanded="true" />
-                <element signature="e#5582#6134#0" expanded="true" />
-                <element signature="e#6133#6134#0" expanded="true" />
+                <element signature="e#3163#3283#0" expanded="true" />
+                <element signature="e#3282#3283#0" expanded="true" />
+                <element signature="e#5495#6111#0" expanded="true" />
+                <element signature="e#6110#6111#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -2415,10 +2415,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#3250#3370#0" expanded="true" />
-            <element signature="e#3369#3370#0" expanded="true" />
-            <element signature="e#5582#6134#0" expanded="true" />
-            <element signature="e#6133#6134#0" expanded="true" />
+            <element signature="e#3163#3283#0" expanded="true" />
+            <element signature="e#3282#3283#0" expanded="true" />
+            <element signature="e#5495#6111#0" expanded="true" />
+            <element signature="e#6110#6111#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2514,10 +2514,10 @@
         <state relative-caret-position="2460">
           <caret line="181" column="0" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
           <folding>
-            <element signature="e#3250#3370#0" expanded="true" />
-            <element signature="e#3369#3370#0" expanded="true" />
-            <element signature="e#5582#6134#0" expanded="true" />
-            <element signature="e#6133#6134#0" expanded="true" />
+            <element signature="e#3163#3283#0" expanded="true" />
+            <element signature="e#3282#3283#0" expanded="true" />
+            <element signature="e#5495#6111#0" expanded="true" />
+            <element signature="e#6110#6111#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2613,10 +2613,10 @@
         <state relative-caret-position="345">
           <caret line="26" column="22" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
           <folding>
-            <element signature="e#3250#3370#0" expanded="true" />
-            <element signature="e#3369#3370#0" expanded="true" />
-            <element signature="e#5582#6134#0" expanded="true" />
-            <element signature="e#6133#6134#0" expanded="true" />
+            <element signature="e#3163#3283#0" expanded="true" />
+            <element signature="e#3282#3283#0" expanded="true" />
+            <element signature="e#5495#6111#0" expanded="true" />
+            <element signature="e#6110#6111#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2800,13 +2800,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eliferbil/quickquiz/QuestionActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="77" column="13" selection-start-line="77" selection-start-column="13" selection-end-line="77" selection-end-column="13" />
+        <state relative-caret-position="480">
+          <caret line="195" column="26" selection-start-line="195" selection-start-column="26" selection-end-line="195" selection-end-column="26" />
           <folding>
-            <element signature="e#3250#3370#0" expanded="true" />
-            <element signature="e#3369#3370#0" expanded="true" />
-            <element signature="e#5582#6134#0" expanded="true" />
-            <element signature="e#6133#6134#0" expanded="true" />
+            <element signature="e#3163#3283#0" expanded="true" />
+            <element signature="e#3282#3283#0" expanded="true" />
+            <element signature="e#5495#6111#0" expanded="true" />
+            <element signature="e#6110#6111#0" expanded="true" />
           </folding>
         </state>
       </provider>

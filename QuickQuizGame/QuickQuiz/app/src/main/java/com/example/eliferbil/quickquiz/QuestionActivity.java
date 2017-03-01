@@ -41,7 +41,7 @@ public class QuestionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
         if(savedInstanceState!=null){
-            seconds = savedInstanceState.getInt("seconds");
+            seconds = savedInstanceState.getInt("SECONDS_BUNDLE_KEY");
         }
         // Trivial Field Assingments
         btns = new Button[]{
@@ -80,8 +80,6 @@ public class QuestionActivity extends AppCompatActivity {
 
         presenter.onSaveInstanceState(outState);
         super.onSaveInstanceState(outState);
-        outState.putInt("seconds", seconds);
-        outState.putBoolean("isRunning", isRunning);
     }
 
 
@@ -190,13 +188,13 @@ public class QuestionActivity extends AppCompatActivity {
                     int secs = seconds;
                     String time = String.format("%d", secs);
                     view.showTime(time);
-                    if (seconds > 0 && isRunning) {
-                        seconds--;
-                    } else { // Time is up
-
-                        endQuestion(AnswerState.EMPTY);
-
-                        seconds = 0;
+                    if(isRunning){
+                        if (seconds > 0) {
+                            seconds--;
+                        } else { // Time is up
+                            endQuestion(AnswerState.EMPTY);
+                       // seconds = 0;
+                        }
                     }
                     handler.postDelayed(this, 1000);
                 }
