@@ -15,7 +15,7 @@ public class UsernameActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_username);
         listenClickFor(R.id.start);
-
+        Game.getInstance().setUser(new User(""));
     }
 
     protected void listenClickFor(int... ids) {
@@ -31,10 +31,8 @@ public class UsernameActivity extends AppCompatActivity implements View.OnClickL
 
                 EditText usernameField = (EditText) findViewById(R.id.username);
                 Game.getInstance().setUser(new User(usernameField.getText().toString()));
-
                 Intent nextActivity = new Intent(this, GameActivity.class);
                 startActivity(nextActivity);
-
                 break;
             default:
                 break;

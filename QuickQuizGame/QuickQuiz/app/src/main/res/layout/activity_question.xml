@@ -23,7 +23,7 @@
 
     <TextView
         android:text="60"
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:id="@+id/timer"
@@ -41,20 +41,8 @@
         android:id="@+id/points" />
 
     <Button
-        android:text="Hadrian"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:id="@+id/answer1"
-        android:layout_marginLeft="43dp"
-        android:layout_marginStart="43dp"
-        android:layout_below="@+id/question"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
         android:text="Nero"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/answer1"
         android:layout_alignRight="@+id/answer1"
@@ -64,23 +52,30 @@
 
     <Button
         android:text="Marcus Antonius"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:id="@+id/answer4"
-        android:layout_alignBaseline="@+id/answer3"
         android:layout_alignBottom="@+id/answer3"
-        android:layout_toRightOf="@+id/answer3"
-        android:layout_toEndOf="@+id/answer3"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp" />
+        android:layout_alignLeft="@+id/answer2"
+        android:layout_alignStart="@+id/answer2" />
 
     <Button
         android:text="Juilus Caesar"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:id="@+id/answer2"
-        android:layout_alignBaseline="@+id/answer1"
-        android:layout_alignBottom="@+id/answer1"
-        android:layout_alignLeft="@+id/timer"
-        android:layout_alignStart="@+id/timer" />
+        android:layout_above="@+id/answer3"
+        android:layout_toEndOf="@+id/timer"
+        android:layout_toRightOf="@+id/timer" />
+
+    <Button
+        android:text="Hadrian"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:id="@+id/answer1"
+        android:layout_below="@+id/question"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/timer" />
 </RelativeLayout>

@@ -8,6 +8,7 @@ import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import java.util.List;
 
@@ -109,5 +110,10 @@ public class GameActivity extends AppCompatActivity {
         public List<Question> getQuestionsFromCategory() {
             return questionsFromCategory;
         }
+    }
+
+    public void onBackClick(View v) {
+        Intent backActivity = new Intent(this, UsernameActivity.class);
+        startActivity(backActivity);
     }
 }

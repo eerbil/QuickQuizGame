@@ -178,16 +178,6 @@
         android:layout_alignStart="@+id/food4" />
 
     <Button
-        android:text="Start Over"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:id="@+id/startOver"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:textSize="24sp" />
-
-    <Button
         android:text="500"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -196,4 +186,15 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="16dp" />
+
+    <Button
+        android:text="Start Over"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:id="@+id/startOver"
+        android:textSize="24sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="onBackClick" />
 </RelativeLayout>

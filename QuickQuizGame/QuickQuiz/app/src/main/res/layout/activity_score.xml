@@ -28,7 +28,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="44dp"
         android:id="@+id/startOver"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:onClick="onBackClick"/>
 
     <TextView
         android:text="You have successfully finished the game!"
