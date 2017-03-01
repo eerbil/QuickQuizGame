@@ -8,10 +8,13 @@ import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity implements Observer {
     private static final int QUESTION_REQUEST = 0;
     private static final Game GAME = Game.getInstance();
     private static final String LAST_BUTTON_BUNDLE_KEY = "last_button";
@@ -25,6 +28,16 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
 
         bindButtonsToQuestions();
+
+        // Observe User for score change
+        User user = GAME.getUser();
+        user.addObserver(this);
+        update(user, user.getScore());
+    }
+
+    @Override
+    public void update(Observable o, Object score) {
+        ((TextView) findViewById(R.id.scoreboard)).setText("Score: " + score);
     }
 
     @Override

@@ -1,10 +1,12 @@
 package com.example.eliferbil.quickquiz;
 
+import java.util.Observable;
+
 /**
  * Created by eliferbil on 26/02/2017.
  */
 
-public class User {
+public class User extends Observable {
     public String username;
     public int score;
     private int questionsAnswered; // her soru cevaplandığında arttırılacak, 15 olduğunda scoreActivity açılacak
@@ -32,7 +34,12 @@ public class User {
     }
 
     public void setScore(int score) {
+
         this.score = score;
+
+        setChanged();
+        notifyObservers(score);
+        clearChanged();
     }
 
     public void addScore(int score) {
