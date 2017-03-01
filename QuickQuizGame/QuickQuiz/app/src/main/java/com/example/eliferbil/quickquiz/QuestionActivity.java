@@ -34,6 +34,18 @@ public class QuestionActivity extends AppCompatActivity {
         isRunning = true;
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        isRunning = false;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        isRunning = true;
+    }
+
     private boolean ceaseListening = false;
 
     @Override
