@@ -90,7 +90,7 @@ public class Game {
         thirdQ.add(new Answer("Blur"));
         questions.add(new Question("music","Noel Gallagher and his younger brother Liam Gallagher formed which rock band?.",300, thirdQ));
         ArrayList<Answer> fourthQ = new ArrayList<Answer>();
-        fourthQ.add(new Answer("Hells Bells,"));
+        fourthQ.add(new Answer("Hells Bells"));
         fourthQ.add(new Answer("Another One Bites the Dust",true));
         fourthQ.add(new Answer("Amazing Grace"));
         fourthQ.add(new Answer("Stairway to Heaven"));

@@ -31,9 +31,15 @@ public class UsernameActivity extends AppCompatActivity implements View.OnClickL
 
                 EditText usernameField = (EditText) findViewById(R.id.username);
                 Game.getInstance().setUser(new User(usernameField.getText().toString()));
-                Intent nextActivity = new Intent(this, GameActivity.class);
-                startActivity(nextActivity);
-                break;
+                if(Game.getInstance().getUser().getUsername().equals("")){
+                    TextView errorField = (TextView) findViewById(R.id.errorMessage);
+                    errorField.setText("Username cannot be empty!");
+                    break;
+                } else {
+                    Intent nextActivity = new Intent(this, GameActivity.class);
+                    startActivity(nextActivity);
+                    break;
+                }
             default:
                 break;
         }

@@ -165,7 +165,7 @@ public class QuestionActivity extends AppCompatActivity {
             handler.post(new Runnable() {
                 @Override
                 public void run() {
-                    int secs = seconds % 60;
+                    int secs = seconds;
                     String time = String.format("%d", secs);
                     view.showTime(time);
                     if (seconds > 0) {
