@@ -113,8 +113,8 @@ public class QuestionActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         presenter.onBackPressed();
+        super.onBackPressed();
     }
 
     public static class QuestionPresenter {
