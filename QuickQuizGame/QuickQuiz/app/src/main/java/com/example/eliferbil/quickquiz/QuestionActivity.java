@@ -22,6 +22,8 @@ public class QuestionActivity extends AppCompatActivity {
     private TextView questionText;
     private TextView pointsText;
 
+    private boolean ceaseListening = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,12 +69,15 @@ public class QuestionActivity extends AppCompatActivity {
 
     }
 
+
     private void displayAnswerStatus(int ansOrder, boolean isCorrect) {
         Button ansButton = btns[ansOrder];
         ansButton.setBackgroundColor(isCorrect ? Color.GREEN : Color.RED);
     }
 
     public void endQuestion() {
+        // Prevent users from going back prematurely
+        ceaseListening = true;
         // Prevent users from clicking
         for (Button btn : btns) {
             btn.setClickable(false);
@@ -113,8 +118,10 @@ public class QuestionActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        presenter.onBackPressed();
-        super.onBackPressed();
+        if (!ceaseListening) {
+            presenter.onBackPressed();
+            super.onBackPressed();
+        }
     }
 
     public static class QuestionPresenter {
