@@ -13,6 +13,10 @@ public class User {
         this.score = score;
     }
 
+    public User(String username) {
+        this(username, 0);
+    }
+
     public String getUsername() {
         return username;
     }
@@ -27,5 +31,9 @@ public class User {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public void addScore(int score) {
+        setScore(getScore() + score);
     }
 }

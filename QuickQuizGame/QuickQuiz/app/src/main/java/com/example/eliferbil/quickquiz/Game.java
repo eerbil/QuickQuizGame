@@ -1,8 +1,6 @@
 package com.example.eliferbil.quickquiz;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by eliferbil on 26/02/2017.
@@ -16,12 +14,12 @@ public class Game {
     private ArrayList<Question> foodList;
     private static Game instance = null;
 
-
     protected Game(){
         this.user = null;
         this.historyList = generateHistoryQuestions();
         this.foodList = generateFoodQuestions();
         this.musicList = generateMusicQuestions();
+
     }
 
     public static Game getInstance() {
@@ -134,5 +132,25 @@ public class Game {
         fifthQ.add(new Answer("Potato"));
         questions.add(new Question("food","Arborio is a variety of which staple food?'",500, fifthQ));
         return questions;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public ArrayList<Question> getHistoryQuestions() {
+        return historyList;
+    }
+
+    public ArrayList<Question> getMusicQuestions() {
+        return musicList;
+    }
+
+    public ArrayList<Question> getFoodQuestions() {
+        return foodList;
     }
 }
