@@ -7,10 +7,12 @@ package com.example.eliferbil.quickquiz;
 public class User {
     public String username;
     public int score;
+    private int questionsAnswered; // her soru cevaplandığında arttırılacak, 15 olduğunda scoreActivity açılacak
 
     public User(String username, int score) {
         this.username = username;
         this.score = score;
+        this.questionsAnswered = 0;
     }
 
     public User(String username) {
@@ -35,5 +37,13 @@ public class User {
 
     public void addScore(int score) {
         setScore(getScore() + score);
+    }
+
+    public int getQuestionsAnswered() {
+        return questionsAnswered;
+    }
+
+    public void setQuestionsAnswered(int questionsAnswered) {
+        this.questionsAnswered = questionsAnswered;
     }
 }

@@ -8,7 +8,6 @@ import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 
 import java.util.List;
 
@@ -70,21 +69,35 @@ public class GameActivity extends AppCompatActivity {
                     data.getStringExtra(QuestionActivity.QuestionPresenter.ANSWER_STATE_RESULT_KEY));
 
             int buttonColor;
+            boolean willBeClickable;
             switch (answerState) {
                 case CORRECT:
                     buttonColor = Color.GREEN;
+                    willBeClickable = false;
                     GAME.getUser().addScore(q.getScore());
                     break;
                 case INCORRECT:
+                    willBeClickable = false;
                     buttonColor = Color.RED;
                     break;
                 case EMPTY:
+                    willBeClickable = false;
                     buttonColor = Color.BLUE;
                     break;
                 default:
                     throw new IllegalStateException("No such AnswerState");
             }
-            findViewById(lastButtonId).setBackgroundColor(buttonColor);
+
+            GAME.addToQuestionsAnswered(1);
+            View lastButton = findViewById(lastButtonId);
+            lastButton.setBackgroundColor(buttonColor);
+            lastButton.setClickable(willBeClickable);
+
+            if (!GAME.isGameContinued()) {
+                Intent intent = new Intent(this, ScoreActivity.class);
+                startActivity(intent);
+                finish();
+            }
         }
     }
 
