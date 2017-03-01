@@ -14,7 +14,7 @@
         android:text="Quick Quiz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="70sp"
+        android:textSize="60sp"
         android:layout_marginTop="39dp"
         android:id="@+id/title"
         android:layout_alignParentTop="true"
