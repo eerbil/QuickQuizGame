@@ -19,8 +19,20 @@ public class QuestionActivity extends AppCompatActivity {
 
     private Button[] btns;
     private TextView timeText;
+    public static boolean isRunning;
     private TextView questionText;
     private TextView pointsText;
+    private int seconds = 60;
+
+    protected void onStop(){
+        super.onStop();
+        isRunning = false;
+    }
+
+    protected void onStart(){
+        super.onStart();
+        isRunning = true;
+    }
 
     private boolean ceaseListening = false;
 
@@ -28,7 +40,9 @@ public class QuestionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
-
+        if(savedInstanceState!=null){
+            seconds = savedInstanceState.getInt("seconds");
+        }
         // Trivial Field Assingments
         btns = new Button[]{
                 (Button) findViewById(R.id.answer1),
@@ -66,7 +80,8 @@ public class QuestionActivity extends AppCompatActivity {
 
         presenter.onSaveInstanceState(outState);
         super.onSaveInstanceState(outState);
-
+        outState.putInt("seconds", seconds);
+        outState.putBoolean("isRunning", isRunning);
     }
 
 
@@ -175,7 +190,7 @@ public class QuestionActivity extends AppCompatActivity {
                     int secs = seconds;
                     String time = String.format("%d", secs);
                     view.showTime(time);
-                    if (seconds > 0) {
+                    if (seconds > 0 && isRunning) {
                         seconds--;
                     } else { // Time is up
 
