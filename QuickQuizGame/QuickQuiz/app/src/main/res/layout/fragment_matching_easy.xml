@@ -1,0 +1,114 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context="com.example.eliferbil.quickquiz.MatchingEasyFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:text="Score: 0"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/life1"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_margin="2dp"
+            android:src="@mipmap/heart" />
+
+        <ImageView
+            android:id="@+id/life2"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_margin="2dp"
+            android:src="@mipmap/heart" />
+
+        <ImageView
+            android:id="@+id/life3"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_margin="2dp"
+            android:src="@mipmap/heart" />
+
+        <ImageView
+            android:id="@+id/life4"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_margin="2dp"
+            android:src="@mipmap/heart" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Try to match the given flags from the closed cards!"
+        android:textSize="18sp"
+        android:textAlignment="center" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:gravity="top">
+
+        <ImageView
+            android:id="@+id/flag1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:src="@mipmap/card"
+            android:layout_weight="1"
+            android:scaleType="fitStart"
+            android:adjustViewBounds="true" />
+
+        <ImageView
+            android:id="@+id/flag2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:src="@mipmap/card"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:scaleType="fitStart" />
+
+        <ImageView
+            android:id="@+id/flag3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:src="@mipmap/card"
+            android:layout_weight="1"
+            android:scaleType="fitStart"
+            android:adjustViewBounds="true" />
+
+        <ImageView
+            android:id="@+id/flag4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:src="@mipmap/card"
+            android:layout_weight="1"
+            android:scaleType="fitStart"
+            android:adjustViewBounds="true" />
+    </LinearLayout>
+
+    <GridLayout
+        android:id="@+id/cardGrid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:rowCount="4"
+        android:columnCount="4">
+    </GridLayout>
+</LinearLayout>

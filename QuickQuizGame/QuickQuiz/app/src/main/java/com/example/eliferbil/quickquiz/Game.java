@@ -9,7 +9,6 @@ import java.util.ArrayList;
 public class Game {
 
     private User user;
-                                   //TODO: app arkaplana geçince veya appten çıkıldığında kaldığı yerden kullanılması için de kullanılabilir
 
     private ArrayList<Question> historyList;
     private ArrayList<Question> musicList;

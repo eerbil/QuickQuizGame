@@ -212,7 +212,6 @@ public class QuestionActivity extends AppCompatActivity {
                 }
             });
 
-
         }
 
         private void endQuestion(AnswerState as) {
