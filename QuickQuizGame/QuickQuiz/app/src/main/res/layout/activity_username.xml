@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_username"
     android:layout_width="match_parent"
@@ -8,15 +8,17 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context="com.example.eliferbil.quickquiz.UsernameActivity">
 
     <TextView
-        android:text="Quick Quiz"
+        android:text="GameOS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="60sp"
-        android:layout_marginTop="39dp"
         android:id="@+id/title"
+        android:layout_margin="20dp"
+        android:layout_gravity="center"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -24,18 +26,22 @@
         android:text="Hello there! Just enter your username below to start the game."
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="132dp"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
         android:id="@+id/description"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textSize="24sp"
+        android:textAlignment="center" />
 
     <EditText
         android:layout_width="wrap_content"
+        android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:hint="Username"
         android:ems="10"
-        android:layout_marginTop="28dp"
+        android:layout_margin="20dp"
         android:id="@+id/username"
         android:layout_below="@+id/description"
         android:layout_centerHorizontal="true" />
@@ -44,17 +50,19 @@
         android:text="Start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
         android:layout_below="@+id/username"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="47dp"
         android:id="@+id/start" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
         android:layout_below="@+id/username"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
         android:id="@+id/errorMessage" />
 
-</RelativeLayout>
+</LinearLayout>

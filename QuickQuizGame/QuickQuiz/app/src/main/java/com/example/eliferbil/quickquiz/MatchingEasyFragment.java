@@ -13,12 +13,6 @@ import android.widget.ImageView;
  */
 public class MatchingEasyFragment extends Fragment {
 
-
-    public MatchingEasyFragment() {
-        // Required empty public constructor
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
