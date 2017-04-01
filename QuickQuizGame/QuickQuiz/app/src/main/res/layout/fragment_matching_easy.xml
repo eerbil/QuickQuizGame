@@ -98,7 +98,7 @@
             android:id="@+id/flag4"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:src="@mipmap/card"
+            android:src="@mipmap/switzerland"
             android:layout_weight="1"
             android:scaleType="fitStart"
             android:adjustViewBounds="true" />
@@ -110,5 +110,6 @@
         android:layout_height="match_parent"
         android:rowCount="4"
         android:columnCount="4">
+
     </GridLayout>
 </LinearLayout>
