@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.eliferbil.quickquiz.QuickQuiz.Game;
-import com.example.eliferbil.quickquiz.QuickQuiz.MainActivity;
 
 public class UsernameActivity extends AppCompatActivity implements View.OnClickListener {
 

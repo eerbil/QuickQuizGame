@@ -1,4 +1,4 @@
-package com.example.eliferbil.quickquiz.QuickQuiz;
+package com.example.eliferbil.quickquiz;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +7,9 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.example.eliferbil.quickquiz.MenuFragment;
-import com.example.eliferbil.quickquiz.R;
+import com.example.eliferbil.quickquiz.QuickQuiz.GameFragment;
+import com.example.eliferbil.quickquiz.QuickQuiz.PhoneGameActivity;
+import com.example.eliferbil.quickquiz.QuickQuiz.Question;
 
 public class MainActivity extends AppCompatActivity implements MenuFragment.GameListListener, GameFragment.TransitionListener {
 
