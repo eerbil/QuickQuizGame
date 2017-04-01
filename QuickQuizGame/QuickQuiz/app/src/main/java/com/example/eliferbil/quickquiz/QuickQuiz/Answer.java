@@ -1,4 +1,4 @@
-package com.example.eliferbil.quickquiz;
+package com.example.eliferbil.quickquiz.QuickQuiz;
 
 import android.os.Parcel;
 import android.os.Parcelable;

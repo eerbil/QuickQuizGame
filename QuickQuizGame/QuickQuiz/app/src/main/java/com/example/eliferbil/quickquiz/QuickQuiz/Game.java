@@ -1,4 +1,6 @@
-package com.example.eliferbil.quickquiz;
+package com.example.eliferbil.quickquiz.QuickQuiz;
+
+import com.example.eliferbil.quickquiz.User;
 
 import java.util.ArrayList;
 

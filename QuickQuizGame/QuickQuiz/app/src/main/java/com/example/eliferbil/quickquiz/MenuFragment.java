@@ -1,17 +1,13 @@
 package com.example.eliferbil.quickquiz;
 
-import android.app.Activity;
-import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.FrameLayout;
 import android.widget.ListView;
 
 /**
@@ -20,7 +16,7 @@ import android.widget.ListView;
 public class MenuFragment extends ListFragment {
     public static String[] gamesList = new String[2];
 
-    static interface GameListListener {
+    public interface GameListListener {
         void itemClicked(long id);
     }
 
@@ -43,9 +39,8 @@ public class MenuFragment extends ListFragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(Context activity) {
         super.onAttach(activity);
-        //TODO: Hata veriyor
         this.listener = (GameListListener) activity;
     }
 

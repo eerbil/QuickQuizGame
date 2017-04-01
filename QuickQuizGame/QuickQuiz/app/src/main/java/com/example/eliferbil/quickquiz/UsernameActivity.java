@@ -1,12 +1,14 @@
 package com.example.eliferbil.quickquiz;
 
 import android.content.Intent;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.eliferbil.quickquiz.QuickQuiz.Game;
+import com.example.eliferbil.quickquiz.QuickQuiz.MainActivity;
 
 public class UsernameActivity extends AppCompatActivity implements View.OnClickListener {
 

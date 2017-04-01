@@ -1,4 +1,4 @@
-package com.example.eliferbil.quickquiz;
+package com.example.eliferbil.quickquiz.QuickQuiz;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -8,6 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.eliferbil.quickquiz.QuickQuiz.Question.AnswerState;
+import com.example.eliferbil.quickquiz.R;
 
 import java.util.List;
 
@@ -137,7 +140,7 @@ public class QuestionActivity extends AppCompatActivity {
         this.questionText.setText(questionText);
     }
 
-    private void setQuestionPoints(int score) {
+    protected void setQuestionPoints(int score) {
         pointsText.setText("This question is worth " + score + " points.");
     }
 
@@ -155,7 +158,6 @@ public class QuestionActivity extends AppCompatActivity {
         private static final String SECONDS_BUNDLE_KEY = "second_bundle";
 
         public static final String QUESTION_RESULT_KEY = "question_result";
-        public static final String ANSWER_STATE_RESULT_KEY = "result";
 
         private Question question;
         private final QuestionActivity view;
@@ -217,6 +219,7 @@ public class QuestionActivity extends AppCompatActivity {
         private void endQuestion(AnswerState as) {
 
             finalState = as;
+            question.setAnswerState(as);
 
             // Stop Timer
             handler.removeCallbacksAndMessages(null);
@@ -241,7 +244,7 @@ public class QuestionActivity extends AppCompatActivity {
         }
 
         public void onPreResultSend(Intent resultIntent) {
-            resultIntent.putExtra(ANSWER_STATE_RESULT_KEY, finalState.toString());
+            // TODO Remove // resultIntent.putExtra(ANSWER_STATE_RESULT_KEY, finalState.toString());
             resultIntent.putExtra(QUESTION_RESULT_KEY, question);
         }
 
@@ -255,8 +258,5 @@ public class QuestionActivity extends AppCompatActivity {
         }
 
 
-        public enum AnswerState {
-            CORRECT, INCORRECT, EMPTY
-        }
     }
 }

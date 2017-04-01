@@ -1,21 +1,9 @@
-package com.example.eliferbil.quickquiz;
+package com.example.eliferbil.quickquiz.QuickQuiz;
 
-import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
-import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
-
-public class GameActivity extends AppCompatActivity implements Observer {
-    private static final int QUESTION_REQUEST = 0;
+public class GameActivity extends AppCompatActivity /*implements Observer*/ {
+    /*private static final int QUESTION_REQUEST = 0;
     private static final Game GAME = Game.getInstance();
     private static final String LAST_BUTTON_BUNDLE_KEY = "last_button";
 
@@ -78,7 +66,7 @@ public class GameActivity extends AppCompatActivity implements Observer {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == QUESTION_REQUEST && resultCode == RESULT_OK && data != null) {
             Question q = data.getParcelableExtra(QuestionActivity.QuestionPresenter.QUESTION_RESULT_KEY);
-            QuestionActivity.QuestionPresenter.AnswerState answerState = QuestionActivity.QuestionPresenter.AnswerState.valueOf(
+            Question.AnswerState answerState = Question.AnswerState.valueOf(
                     data.getStringExtra(QuestionActivity.QuestionPresenter.ANSWER_STATE_RESULT_KEY));
 
             int buttonColor;
@@ -141,5 +129,5 @@ public class GameActivity extends AppCompatActivity implements Observer {
     public void onBackClick(View v) {
         Intent backActivity = new Intent(this, UsernameActivity.class);
         startActivity(backActivity);
-    }
+    }*/
 }

@@ -1,4 +1,4 @@
-package com.example.eliferbil.quickquiz;
+package com.example.eliferbil.quickquiz.QuickQuiz;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -16,6 +16,7 @@ public class Question implements Parcelable {
     private String text;
     private int score;
     private List<Answer> answers;
+    private AnswerState answerState = AnswerState.INITIAL;
 
     private SoftReference<Answer> correctAnswerCache;
 
@@ -78,6 +79,14 @@ public class Question implements Parcelable {
 
     }
 
+    public AnswerState getAnswerState() {
+        return answerState;
+    }
+
+    public void setAnswerState(AnswerState answerState) {
+        this.answerState = answerState;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -88,18 +97,20 @@ public class Question implements Parcelable {
         dest.writeString(this.category);
         dest.writeString(this.text);
         dest.writeInt(this.score);
-        dest.writeList(this.answers);
+        dest.writeTypedList(this.answers);
+        dest.writeInt(this.answerState == null ? -1 : this.answerState.ordinal());
     }
 
     protected Question(Parcel in) {
         this.category = in.readString();
         this.text = in.readString();
         this.score = in.readInt();
-        this.answers = new ArrayList<Answer>();
-        in.readList(this.answers, Answer.class.getClassLoader());
+        this.answers = in.createTypedArrayList(Answer.CREATOR);
+        int tmpAnswerState = in.readInt();
+        this.answerState = tmpAnswerState == -1 ? null : AnswerState.values()[tmpAnswerState];
     }
 
-    public static final Parcelable.Creator<Question> CREATOR = new Parcelable.Creator<Question>() {
+    public static final Creator<Question> CREATOR = new Creator<Question>() {
         @Override
         public Question createFromParcel(Parcel source) {
             return new Question(source);
@@ -110,4 +121,8 @@ public class Question implements Parcelable {
             return new Question[size];
         }
     };
+
+    public enum AnswerState {
+        INITIAL, CORRECT, INCORRECT, EMPTY
+    }
 }
