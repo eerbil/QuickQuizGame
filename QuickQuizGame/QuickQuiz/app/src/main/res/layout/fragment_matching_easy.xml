@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context="com.example.eliferbil.quickquiz.MatchingEasyFragment">
+    tools:context="com.example.eliferbil.quickquiz.memogame.MatchingEasyFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -104,12 +104,11 @@
             android:adjustViewBounds="true" />
     </LinearLayout>
 
-    <GridLayout
+    <GridView
         android:id="@+id/cardGrid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:rowCount="4"
-        android:columnCount="4">
+        android:numColumns="4">
 
-    </GridLayout>
+    </GridView>
 </LinearLayout>

@@ -13,21 +13,21 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".QuickQuiz.GameActivity"
+            android:name=".quickquiz.GameActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".QuickQuiz.QuestionActivity"
+            android:name=".quickquiz.QuestionActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ScoreActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".QuickQuiz.PhoneGameActivity"></activity>
+        <activity android:name=".quickquiz.PhoneGameActivity" />
+        <activity android:name=".quickquiz.PhoneQuestionActivity" />
     </application>
 
 </manifest>
