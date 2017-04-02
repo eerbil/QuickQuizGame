@@ -10,6 +10,14 @@ public class MortalUser extends User {
     public static final int INIT_HEALTH = 4;
     private int health;
 
+    public int getHealth() {
+        return health;
+    }
+
+    public void decreaseHealth(int i) {
+        health -= i;
+    }
+
     public MortalUser(String username, int score, int health) {
         super(username, score);
         this.health = health;
@@ -21,6 +29,10 @@ public class MortalUser extends User {
     }
 
     public MortalUser(String username) {
-        super(username, INIT_HEALTH);
+        this(username, INIT_HEALTH);
+    }
+
+    public MortalUser(User u) {
+        this(u.getUsername());
     }
 }

@@ -43,7 +43,7 @@ public class TaggedImageAdapter<T> extends BaseAdapter {
     }
 
     public long getItemId(int position) {
-        return 0;
+        return images[position].getId();
     }
 
     // create a new ImageView for each item referenced by the Adapter
@@ -63,7 +63,7 @@ public class TaggedImageAdapter<T> extends BaseAdapter {
             imageView = (ImageView) convertView;
         }
 //        imageView.setImageResource(mipmapIds.get(position));
-        if (imageView == images[position]) {
+        if (imageView != images[position]) {
             images[position] = imageView;
         }
         return imageView;

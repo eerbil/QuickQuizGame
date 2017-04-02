@@ -9,6 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.example.eliferbil.quickquiz.memogame.MatchingEasyFragment;
+import com.example.eliferbil.quickquiz.memogame.MortalUser;
+import com.example.eliferbil.quickquiz.memogame.PhoneMemoActivity;
+import com.example.eliferbil.quickquiz.memogame.TabletMemoTransitionManager;
+import com.example.eliferbil.quickquiz.quickquiz.Game;
 import com.example.eliferbil.quickquiz.quickquiz.GameFragment;
 import com.example.eliferbil.quickquiz.quickquiz.PhoneGameActivity;
 import com.example.eliferbil.quickquiz.quickquiz.QuickQuizTabletTransitionManager;
@@ -35,31 +39,36 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.Game
 
         View fragmentContainer = findViewById(R.id.gameFragment);
         if (fragmentContainer != null) {
-            QuickQuizTabletTransitionManager tm = QuickQuizTabletTransitionManager.get(this);
-            bpl = tm;
-            transitionManager = tm;
-            getSupportFragmentManager().addOnBackStackChangedListener(tm);
 
-            Fragment nextFragment = null;
+
+            Fragment nextFragment;
             switch ((int) id) {
                 case 0:
+                    QuickQuizTabletTransitionManager tm = QuickQuizTabletTransitionManager.get(this);
+                    bpl = tm;
+                    transitionManager = tm;
+                    getSupportFragmentManager().addOnBackStackChangedListener(tm);
                     nextFragment = new GameFragment();
                     break;
                 case 1:
+                    transitionManager = TabletMemoTransitionManager.get(this);
+                    Game game = Game.getInstance();
+                    game.setUser(new MortalUser(game.getUser()));
                     nextFragment = new MatchingEasyFragment();
                     break;
                 default:
                     throw new IllegalArgumentException("Unknown Id");
             }
+
             pushDetailFragment(nextFragment);
         } else {
-            Class<?> nextActivity = null;
+            Class<?> nextActivity;
             switch ((int) id) {
                 case 0:
                     nextActivity = PhoneGameActivity.class;
                     break;
                 case 1:
-
+                    nextActivity = PhoneMemoActivity.class;
                     break;
                 default:
                     throw new IllegalArgumentException("Unknown Id");

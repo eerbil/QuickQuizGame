@@ -16,7 +16,6 @@ public class MatchingEasyFragment extends MatchingBaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
         return inflater.inflate(com.example.eliferbil.quickquiz.R.layout.fragment_matching_easy, container, false);
     }
 
@@ -29,5 +28,10 @@ public class MatchingEasyFragment extends MatchingBaseFragment {
     @Override
     public int getTargetNum() {
         return 4;
+    }
+
+    @Override
+    public int getNextLevelCode() {
+        return MemoTransitionManager.MEDIUM;
     }
 }

@@ -14,10 +14,6 @@ import android.view.ViewGroup;
 public class MatchingHardFragment extends MatchingBaseFragment {
 
 
-    public MatchingHardFragment() {
-        // Required empty public constructor
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,5 +30,10 @@ public class MatchingHardFragment extends MatchingBaseFragment {
     @Override
     public int getTargetNum() {
         return 6;
+    }
+
+    @Override
+    public int getNextLevelCode() {
+        return MemoTransitionManager.FINISH;
     }
 }
