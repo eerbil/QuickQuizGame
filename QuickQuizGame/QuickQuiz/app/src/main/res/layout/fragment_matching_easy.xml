@@ -71,7 +71,7 @@
             android:id="@+id/flag1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:src="@mipmap/card"
+            android:src="@mipmap/barbados"
             android:layout_weight="1"
             android:scaleType="fitStart"
             android:adjustViewBounds="true" />
@@ -80,7 +80,7 @@
             android:id="@+id/flag2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:src="@mipmap/card"
+            android:src="@mipmap/indonesia"
             android:layout_weight="1"
             android:adjustViewBounds="true"
             android:scaleType="fitStart" />
@@ -89,7 +89,7 @@
             android:id="@+id/flag3"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:src="@mipmap/card"
+            android:src="@mipmap/guam"
             android:layout_weight="1"
             android:scaleType="fitStart"
             android:adjustViewBounds="true" />
@@ -98,7 +98,7 @@
             android:id="@+id/flag4"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:src="@mipmap/card"
+            android:src="@mipmap/peru"
             android:layout_weight="1"
             android:scaleType="fitStart"
             android:adjustViewBounds="true" />
@@ -110,5 +110,6 @@
         android:layout_height="match_parent"
         android:rowCount="4"
         android:columnCount="4">
+
     </GridLayout>
 </LinearLayout>
