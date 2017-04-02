@@ -2,6 +2,7 @@ package com.example.eliferbil.quickquiz;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -24,11 +25,17 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.Game
     }
 
     @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+
+    }
+
+    @Override
     public void itemClicked(long id) {
 
         View fragmentContainer = findViewById(R.id.gameFragment);
         if (fragmentContainer != null) {
-            QuickQuizTabletTransitionManager tm = new QuickQuizTabletTransitionManager(this);
+            QuickQuizTabletTransitionManager tm = QuickQuizTabletTransitionManager.get(this);
             bpl = tm;
             transitionManager = tm;
             getSupportFragmentManager().addOnBackStackChangedListener(tm);
@@ -92,6 +99,12 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.Game
         }
     }
 
+    @Override
+    public void endGame() {
+        Intent intent = new Intent(this, ScoreActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
     @Override
     public <T extends TransitionManager> T provide() {

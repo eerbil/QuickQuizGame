@@ -8,34 +8,38 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import java.util.List;
+
 /**
  * Created by Ata on 2.4.2017.
  */
 
-public class ImageAdapter extends BaseAdapter {
+public class TaggedImageAdapter<T> extends BaseAdapter {
     private static final int IMAGE_EDGE_LENGTH = 100;
     private Context mContext;
     private
     @IdRes
-    int[][] ids;
-    private final int edgeLength;
+    int[] mipmapIds;
+    private final int size;
+    private ImageView[] images;
+    private List<T> tags;
 
 
-    public ImageAdapter(Context c, @IdRes int[][] ids) {
+    public TaggedImageAdapter(Context c, @IdRes int[] mipmapIds, List<T> tags) {
         this.mContext = c;
-        this.ids = ids;
-        this.edgeLength = ids.length;
-        if (edgeLength != ids[0].length) {
-            throw new IllegalArgumentException("Ids must be square");
-        }
+        this.mipmapIds = mipmapIds;
+        this.size = mipmapIds.length;
+        this.images = new ImageView[size];
+        this.tags = tags;
     }
 
+
     public int getCount() {
-        return edgeLength * edgeLength;
+        return size;
     }
 
     public Object getItem(int position) {
-        return null;
+        return images[position];
     }
 
     public long getItemId(int position) {
@@ -52,17 +56,21 @@ public class ImageAdapter extends BaseAdapter {
             imageView.setAdjustViewBounds(true);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageView.setPadding(8, 8, 8, 8);
+            imageView.setTag(tags.get(position));
+            imageView.setImageResource(mipmapIds[position]);
+
         } else {
             imageView = (ImageView) convertView;
         }
-
-        int[] yx = posTo2D(position);
-        imageView.setImageResource(ids[yx[0]][yx[1]]);
+//        imageView.setImageResource(mipmapIds.get(position));
+        if (imageView == images[position]) {
+            images[position] = imageView;
+        }
         return imageView;
     }
 
-    private int[] posTo2D(int position) {
-        return new int[]{position / edgeLength, position % edgeLength};
-    }
+    /*private int[] posTo2D(int position) {
+        return new int[]{position / size, position % size};
+    }*/
 }
 

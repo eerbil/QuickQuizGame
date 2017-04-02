@@ -28,6 +28,11 @@ public class QuestionFragment extends Fragment implements BackPressedListener {
     private int seconds = 60;
     private boolean ceaseListening = false;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
 
     @Override
     public void onStop() {

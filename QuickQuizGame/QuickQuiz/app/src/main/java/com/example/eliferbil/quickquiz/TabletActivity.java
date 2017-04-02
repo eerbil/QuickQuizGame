@@ -14,4 +14,6 @@ public interface TabletActivity extends TransitionManager.Provider {
     Fragment getCurrentDetailFragment();
 
     void startOver();
+
+    void endGame();
 }

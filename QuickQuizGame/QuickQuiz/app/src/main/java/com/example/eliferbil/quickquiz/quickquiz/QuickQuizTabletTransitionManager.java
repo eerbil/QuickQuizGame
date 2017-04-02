@@ -7,12 +7,23 @@ import com.example.eliferbil.quickquiz.TabletActivity;
  * Created by Ata on 2.4.2017.
  */
 public class QuickQuizTabletTransitionManager implements GameFragment.TransitionManager, QuestionPresenter.TransitionManager, BackPressedListener, android.support.v4.app.FragmentManager.OnBackStackChangedListener {
+    private static QuickQuizTabletTransitionManager ins;
+
+    public static QuickQuizTabletTransitionManager get(TabletActivity mainActivity) {
+        if (ins == null) {
+            ins = new QuickQuizTabletTransitionManager(mainActivity);
+        } else {
+            ins.mainActivity = mainActivity;
+        }
+        return ins;
+    }
+
     private TabletActivity mainActivity;
     private Question selectedQuestion;
     private BackPressedListener bpl;
     private Runnable nextOnBackStackChangedAction;
 
-    public QuickQuizTabletTransitionManager(TabletActivity mainActivity) {
+    private QuickQuizTabletTransitionManager(TabletActivity mainActivity) {
         this.mainActivity = mainActivity;
     }
 
@@ -29,7 +40,7 @@ public class QuickQuizTabletTransitionManager implements GameFragment.Transition
 
     @Override
     public void gameEnded() {
-        // TODO
+        mainActivity.endGame();
     }
 
     @Override
