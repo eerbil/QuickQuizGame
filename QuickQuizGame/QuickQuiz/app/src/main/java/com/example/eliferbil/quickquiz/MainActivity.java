@@ -68,6 +68,8 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.Game
                     nextActivity = PhoneGameActivity.class;
                     break;
                 case 1:
+                    Game game = Game.getInstance();
+                    game.setUser(new MortalUser(game.getUser()));
                     nextActivity = PhoneMemoActivity.class;
                     break;
                 default:

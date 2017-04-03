@@ -80,7 +80,10 @@ public class GameFragment extends Fragment implements Observer {
 
     @Override
     public void update(Observable o, Object score) {
-        ((TextView) getView().findViewById(R.id.scoreboard)).setText("Score: " + score);
+        View view = getView();
+        if (view != null) {
+            ((TextView) view.findViewById(R.id.scoreboard)).setText("Score: " + score);
+        }
     }
 
     @Override

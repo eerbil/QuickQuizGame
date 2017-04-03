@@ -38,7 +38,8 @@ public class TabletMemoTransitionManager implements MemoTransitionManager {
                 fragment = new MatchingHardFragment();
                 break;
             default:
-                throw new IllegalStateException("This shouldn't come here");
+                mainActivity.endGame();
+                return;
         }
         mainActivity.pushDetailFragment(fragment);
     }

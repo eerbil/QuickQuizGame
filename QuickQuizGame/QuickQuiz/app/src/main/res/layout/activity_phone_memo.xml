@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.eliferbil.quickquiz.memogame.PhoneMemoActivity">
 
-    <fragment
+    <FrameLayout
         android:id="@+id/phoneMemoFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

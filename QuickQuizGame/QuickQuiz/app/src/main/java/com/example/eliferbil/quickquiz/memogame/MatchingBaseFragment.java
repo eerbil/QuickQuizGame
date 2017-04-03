@@ -1,6 +1,7 @@
 package com.example.eliferbil.quickquiz.memogame;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.eliferbil.quickquiz.R;
 import com.example.eliferbil.quickquiz.TransitionManager;
@@ -19,13 +21,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Set;
 
-/**
- * Created by Ata on 2.4.2017.
- */
 
-public abstract class MatchingBaseFragment extends Fragment {
+public abstract class MatchingBaseFragment extends Fragment implements Observer {
     public static final String TAG = "MatchingBaseFragment";
     public static final int WAIT_MILLIS = 5000;
     public static final int CARD_RES_ID = R.mipmap.card;
@@ -34,9 +35,11 @@ public abstract class MatchingBaseFragment extends Fragment {
     private boolean isNew = true;
     private ChooseState chooseState = ChooseState.OBSERVE;
     private static List<Flag> board = new ArrayList<>();
+    private static Set<Flag.Country> targets = new HashSet<>();
     private Flag chosenFlag;
     private MemoTransitionManager mtm;
     private int matches = 0;
+
 
 
     @Override
@@ -56,17 +59,19 @@ public abstract class MatchingBaseFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
         if (savedInstanceState == null) {
+            Game.getInstance().getUser().addObserver(this);
             List<Flag.Country> temp = Arrays.asList(Flag.Country.values());
             List<Flag.Country> countries = new ArrayList<Flag.Country>(temp);
             Collections.shuffle(countries);
-            Set<Flag.Country> targets = new HashSet<>(countries.subList(0, getTargetNum()));
-            List<Flag.Country> flagCountries = new ArrayList<>(countries);
+            targets = new HashSet<>(countries.subList(0, getTargetNum()));
+            List<Flag.Country> flagCountries = new ArrayList<>(countries.size());
 
             // Add targets twice
             flagCountries.addAll(targets);
             flagCountries.addAll(targets);
 
-            flagCountries.addAll(countries.subList(getTargetNum(), countries.size()));
+            int end = Math.min(countries.size(), getEdgeLength() * getEdgeLength() - getTargetNum());
+            flagCountries.addAll(countries.subList(getTargetNum(), end));
 
             board = new ArrayList<Flag>(flagCountries.size());
             for (Flag.Country c : flagCountries) {
@@ -104,9 +109,11 @@ public abstract class MatchingBaseFragment extends Fragment {
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                closeFlag((ImageView) getGridView().getItemAtPosition(position));
-                                chooseState = ChooseState.CHOOSE_1;
-                                chosenFlag = null;
+                                if (chooseState == ChooseState.CHOOSE_2) {
+                                    closeFlag((ImageView) getGridView().getItemAtPosition(position));
+                                    chooseState = ChooseState.CHOOSE_1;
+                                    chosenFlag = null;
+                                }
                             }
                         }, WAIT_MILLIS);
                         chooseState = ChooseState.CHOOSE_2;
@@ -128,9 +135,11 @@ public abstract class MatchingBaseFragment extends Fragment {
                                         mtm.nextLevel(getNextLevelCode());
                                     }
                                 } else {
+                                    closeFlag((ImageView) v);
+                                    closeFlag(getViewFromFlag(chosenFlag));
                                     decrementHealth();
                                     if (getHealth() <= 0) {
-                                        mtm.nextLevel(MemoTransitionManager.FINISH);
+                                        nextLevel();
                                         return;
                                     }
                                 }
@@ -138,7 +147,6 @@ public abstract class MatchingBaseFragment extends Fragment {
                             }
                         }, COMPARE_MILLIS);
                         openFlag((ImageView) v);
-
                         break;
                 }
             }
@@ -147,11 +155,21 @@ public abstract class MatchingBaseFragment extends Fragment {
 
     }
 
+    protected void nextLevel() {
+        handler.removeCallbacksAndMessages(null);
+        mtm.nextLevel(MemoTransitionManager.FINISH);
+    }
+
     private void addScore(int i) {
         Game.getInstance().getUser().addScore(i);
     }
 
     private void decrementHealth() {
+        final Resources resources = getResources();
+        final String packageName = getActivity().getPackageName();
+
+        ImageView iv = (ImageView) getView().findViewById(resources.getIdentifier("life" + getHealth(), "id", packageName));
+        iv.setImageResource(R.mipmap.heart2);
         ((MortalUser) Game.getInstance().getUser()).decreaseHealth(1);
     }
 
@@ -166,7 +184,7 @@ public abstract class MatchingBaseFragment extends Fragment {
 
     private void openFlag(ImageView iw) {
         Flag f = (Flag) iw.getTag();
-        iw.setImageResource(CARD_RES_ID);
+        iw.setImageResource(f.getCountry().getMipmapId());
         f.setState(Flag.OpenState.OPEN);
     }
 
@@ -191,28 +209,32 @@ public abstract class MatchingBaseFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                int size = board.size();
-                for (int i = 0; i < size; i++) {
-                    ImageView itemAtPosition = (ImageView) getGridView().getItemAtPosition(i);
-                    if (itemAtPosition != null) {
-                        itemAtPosition.setImageResource(CARD_RES_ID);
-                        board.get(i).setState(Flag.OpenState.CLOSED);
-                    }
-                }
+        if (isNew) {
+            final Resources resources = getResources();
+            final String packageName = getActivity().getPackageName();
+            int i = 1;
+            for (Flag.Country target : targets) {
+                ImageView iv = (ImageView) getView().findViewById(resources.getIdentifier("flag" + i, "id", packageName));
+                iv.setImageResource(target.getMipmapId());
+                i++;
+
             }
-        }, WAIT_MILLIS);
-
-    }
-
-    protected void shuffleFlags(List<List<Flag>> flags) {
-        final int size = flags.size();
-        for (int i = 0; i < size; i++) {
-            Collections.shuffle(flags.get(i));
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    int size = board.size();
+                    for (int i = 0; i < size; i++) {
+                        ImageView itemAtPosition = (ImageView) getGridView().getItemAtPosition(i);
+                        if (itemAtPosition != null) {
+                            itemAtPosition.setImageResource(CARD_RES_ID);
+                            board.get(i).setState(Flag.OpenState.CLOSED);
+                        }
+                    }
+                    chooseState = ChooseState.CHOOSE_1;
+                }
+            }, WAIT_MILLIS);
+            isNew = false;
         }
-        Collections.shuffle(flags);
     }
 
     public abstract int getEdgeLength();
@@ -220,6 +242,14 @@ public abstract class MatchingBaseFragment extends Fragment {
     public abstract int getTargetNum();
 
     public abstract int getNextLevelCode();
+
+    @Override
+    public void update(Observable observable, Object score) {
+        View view = getView();
+        if (view != null) {
+            ((TextView) view.findViewById(R.id.score)).setText("Score: " + score);
+        }
+    }
 
     private enum ChooseState {
         OBSERVE, CHOOSE_1, CHOOSE_2
