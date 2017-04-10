@@ -9,6 +9,8 @@ import android.support.v4.app.Fragment;
 public interface TabletActivity extends TransitionManager.Provider {
     void pushDetailFragment(Fragment fragment);
 
+    void pushDetailFragment(Fragment fragment, boolean addToBackStack);
+
     void popDetailFragment();
 
     Fragment getCurrentDetailFragment();

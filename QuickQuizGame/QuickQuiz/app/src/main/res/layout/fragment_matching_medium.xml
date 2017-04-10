@@ -117,6 +117,5 @@
         android:id="@+id/cardGrid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:rowCount="5"
-        android:columnCount="5"></GridView>
+        android:numColumns="5" />
 </LinearLayout>

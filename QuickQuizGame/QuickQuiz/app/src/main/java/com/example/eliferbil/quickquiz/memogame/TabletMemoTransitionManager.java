@@ -41,6 +41,6 @@ public class TabletMemoTransitionManager implements MemoTransitionManager {
                 mainActivity.endGame();
                 return;
         }
-        mainActivity.pushDetailFragment(fragment);
+        mainActivity.pushDetailFragment(fragment, false);
     }
 }

@@ -20,10 +20,18 @@ import static com.example.eliferbil.quickquiz.R.mipmap.haiti;
 import static com.example.eliferbil.quickquiz.R.mipmap.indonesia;
 import static com.example.eliferbil.quickquiz.R.mipmap.italy;
 import static com.example.eliferbil.quickquiz.R.mipmap.lebanon;
+import static com.example.eliferbil.quickquiz.R.mipmap.mali;
+import static com.example.eliferbil.quickquiz.R.mipmap.malta;
+import static com.example.eliferbil.quickquiz.R.mipmap.nedherlands;
+import static com.example.eliferbil.quickquiz.R.mipmap.paraguay;
 import static com.example.eliferbil.quickquiz.R.mipmap.peru;
 import static com.example.eliferbil.quickquiz.R.mipmap.poland;
 import static com.example.eliferbil.quickquiz.R.mipmap.portugal;
 import static com.example.eliferbil.quickquiz.R.mipmap.russia;
+import static com.example.eliferbil.quickquiz.R.mipmap.stvincent;
+import static com.example.eliferbil.quickquiz.R.mipmap.suriname;
+import static com.example.eliferbil.quickquiz.R.mipmap.venezuela;
+import static com.example.eliferbil.quickquiz.R.mipmap.virginislands;
 
 /**
  * Created by Ata on 2.4.2017.
@@ -59,7 +67,10 @@ public class Flag {
         PERU(peru), POLAND(poland), PORTUGAL(portugal), RUSSIA(russia),
         ARUBA(aruba), BULGARIA(bulgaria), CAMEROON(cameroon), CHILE(chile),
         COLOMBIA(colombia), EGYPT(egypt), ERITREA(eritrea), ESTONIA(estonia),
-        FRANCE(france), GAMBIA(gambia), GHANA(ghana), LEBANON(lebanon);
+        FRANCE(france), GAMBIA(gambia), GHANA(ghana), LEBANON(lebanon),
+        NETHERLANDS(nedherlands), PARAGUAY(paraguay), VENEZUELA(venezuela),
+        SURINAME(suriname), MALI(mali), MALTA(malta), ST_VINCENT(stvincent),
+        VIRGIN_ISLANDS(virginislands);
 
         private final
         @IdRes

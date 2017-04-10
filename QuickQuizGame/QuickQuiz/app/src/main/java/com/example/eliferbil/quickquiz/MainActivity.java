@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -40,7 +41,6 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.Game
         View fragmentContainer = findViewById(R.id.gameFragment);
         if (fragmentContainer != null) {
 
-
             Fragment nextFragment;
             switch ((int) id) {
                 case 0:
@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.Game
                     nextFragment = new GameFragment();
                     break;
                 case 1:
+                    bpl = null;
                     transitionManager = TabletMemoTransitionManager.get(this);
                     Game game = Game.getInstance();
                     game.setUser(new MortalUser(game.getUser()));
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.Game
                 default:
                     throw new IllegalArgumentException("Unknown Id");
             }
-
+            clearBackstack();
             pushDetailFragment(nextFragment);
         } else {
             Class<?> nextActivity;
@@ -80,10 +81,24 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.Game
         }
     }
 
+    private void clearBackstack() {
+        FragmentManager supportFragmentManager = getSupportFragmentManager();
+        while (supportFragmentManager.getBackStackEntryCount() > 0) {
+            supportFragmentManager.popBackStackImmediate();
+        }
+    }
+
     public void pushDetailFragment(Fragment fragment) {
+        pushDetailFragment(fragment, true);
+    }
+
+    @Override
+    public void pushDetailFragment(Fragment fragment, boolean addToBackStack) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.gameFragment, fragment);
-        ft.addToBackStack(null);
+        if (addToBackStack) {
+            ft.addToBackStack(null);
+        }
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         ft.commit();
     }
@@ -106,7 +121,12 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.Game
     public void onBackPressed() {
 
         if (bpl == null || bpl.onBackPressed()) {
-            super.onBackPressed();
+            if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
+                super.onBackPressed();
+            } else {
+                finish();
+            }
+
         }
     }
 

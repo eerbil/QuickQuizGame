@@ -1,7 +1,7 @@
 package com.example.eliferbil.quickquiz.memogame;
 
 import android.content.Context;
-import android.support.annotation.IdRes;
+import android.support.annotation.DrawableRes;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -17,15 +17,15 @@ import java.util.List;
 public class TaggedImageAdapter<T> extends BaseAdapter {
     private static final int IMAGE_EDGE_LENGTH = 100;
     private Context mContext;
-    private
-    @IdRes
+    protected
+    @DrawableRes
     int[] mipmapIds;
     private final int size;
     private ImageView[] images;
     private List<T> tags;
 
 
-    public TaggedImageAdapter(Context c, @IdRes int[] mipmapIds, List<T> tags) {
+    public TaggedImageAdapter(Context c, @DrawableRes int[] mipmapIds, List<T> tags) {
         this.mContext = c;
         this.mipmapIds = mipmapIds;
         this.size = mipmapIds.length;
@@ -57,12 +57,13 @@ public class TaggedImageAdapter<T> extends BaseAdapter {
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageView.setPadding(8, 8, 8, 8);
             imageView.setTag(tags.get(position));
-            imageView.setImageResource(mipmapIds[position]);
 
         } else {
             imageView = (ImageView) convertView;
         }
-//        imageView.setImageResource(mipmapIds.get(position));
+
+        imageView.setImageResource(mipmapIds[position]);
+
         if (imageView != images[position]) {
             images[position] = imageView;
         }

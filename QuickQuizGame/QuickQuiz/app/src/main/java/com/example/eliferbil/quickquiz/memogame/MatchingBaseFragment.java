@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.eliferbil.quickquiz.R;
 import com.example.eliferbil.quickquiz.TransitionManager;
+import com.example.eliferbil.quickquiz.User;
 import com.example.eliferbil.quickquiz.quickquiz.Game;
 
 import java.util.ArrayList;
@@ -29,6 +31,7 @@ import java.util.Set;
 public abstract class MatchingBaseFragment extends Fragment implements Observer {
     public static final String TAG = "MatchingBaseFragment";
     public static final int WAIT_MILLIS = 5000;
+    @DrawableRes
     public static final int CARD_RES_ID = R.mipmap.card;
     public static final int COMPARE_MILLIS = 500;
     private final Handler handler = new Handler();
@@ -39,7 +42,7 @@ public abstract class MatchingBaseFragment extends Fragment implements Observer 
     private Flag chosenFlag;
     private MemoTransitionManager mtm;
     private int matches = 0;
-
+    private FlagAdapter flagAdapter;
 
 
     @Override
@@ -85,17 +88,20 @@ public abstract class MatchingBaseFragment extends Fragment implements Observer 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        User user = Game.getInstance().getUser();
+        this.update(user, user.getScore());
+        setUIHealth(((MortalUser) user).getHealth(), 4); // TODO Parameterize
+
         View view = getView();
         GridView gridview = (GridView) view.findViewById(R.id.cardGrid);
 
-        int[] ids = new int[board.size()];
-        for (int i = 0; i < ids.length; i++) {
-            ids[i] = board.get(i).getCountry().getMipmapId();
-        }
-        gridview.setAdapter(
-                new TaggedImageAdapter<>(getContext(),
-                        ids,
-                        board));
+//        int[] ids = new int[board.size()];
+//        for (int i = 0; i < ids.length; i++) {
+//            ids[i] = board.get(i).getCountry().getMipmapId();
+//        }
+        flagAdapter = new FlagAdapter(getContext(), CARD_RES_ID, board);
+        gridview.setAdapter(flagAdapter);
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, final View v,
@@ -104,6 +110,7 @@ public abstract class MatchingBaseFragment extends Fragment implements Observer 
                     case OBSERVE:
                         return;
                     case CHOOSE_1:
+                        chooseState = ChooseState.OBSERVE;
                         chosenFlag = getFlagFromView(v);
                         openFlag((ImageView) v);
                         handler.postDelayed(new Runnable() {
@@ -111,6 +118,7 @@ public abstract class MatchingBaseFragment extends Fragment implements Observer 
                             public void run() {
                                 if (chooseState == ChooseState.CHOOSE_2) {
                                     closeFlag((ImageView) getGridView().getItemAtPosition(position));
+                                    decrementHealth();
                                     chooseState = ChooseState.CHOOSE_1;
                                     chosenFlag = null;
                                 }
@@ -119,14 +127,15 @@ public abstract class MatchingBaseFragment extends Fragment implements Observer 
                         chooseState = ChooseState.CHOOSE_2;
                         break;
                     case CHOOSE_2:
+                        chooseState = ChooseState.OBSERVE;
                         if (chosenFlag == getFlagFromView(v)) {
+                            chooseState = ChooseState.CHOOSE_2;
                             return;
                         }
-                        chooseState = ChooseState.OBSERVE;
+                        handler.removeCallbacksAndMessages(null);
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-
                                 if (getFlagFromView(v).sameCountry(chosenFlag)) {
                                     removeFlag((ImageView) v);
                                     removeFlag(getViewFromFlag(chosenFlag));
@@ -152,7 +161,6 @@ public abstract class MatchingBaseFragment extends Fragment implements Observer 
             }
         });
 
-
     }
 
     protected void nextLevel() {
@@ -173,29 +181,34 @@ public abstract class MatchingBaseFragment extends Fragment implements Observer 
         ((MortalUser) Game.getInstance().getUser()).decreaseHealth(1);
     }
 
+    private void setUIHealth(int health, int maxHealth) {
+        final Resources resources = getResources();
+        final String packageName = getActivity().getPackageName();
+        for (int i = 1; i <= maxHealth; i++) {
+
+            ImageView iv = (ImageView) getView().findViewById(resources.getIdentifier("life" + i, "id", packageName));
+            iv.setImageResource(i > health ? R.mipmap.heart2 : R.mipmap.heart);
+        }
+    }
+
     private int getHealth() {
         return ((MortalUser) Game.getInstance().getUser()).getHealth();
     }
 
     private void closeFlag(ImageView iw) {
-        Flag f = (Flag) iw.getTag();
-        iw.setImageResource(CARD_RES_ID);
+        flagAdapter.closeFlag(((FlagAdapter.IndexedFlagTag) iw.getTag()).index);
     }
 
     private void openFlag(ImageView iw) {
-        Flag f = (Flag) iw.getTag();
-        iw.setImageResource(f.getCountry().getMipmapId());
-        f.setState(Flag.OpenState.OPEN);
+        flagAdapter.openFlag(((FlagAdapter.IndexedFlagTag) iw.getTag()).index);
     }
 
     private void removeFlag(ImageView iw) {
-        Flag f = (Flag) iw.getTag();
-        iw.setImageResource(0);
-        f.setState(Flag.OpenState.ELIMINATED);
+        flagAdapter.eliminateFlag(((FlagAdapter.IndexedFlagTag) iw.getTag()).index);
     }
 
     private Flag getFlagFromView(View v) {
-        return (Flag) v.getTag();
+        return ((FlagAdapter.IndexedFlagTag) v.getTag()).flag;
     }
 
     private ImageView getViewFromFlag(Flag f) {
@@ -217,24 +230,33 @@ public abstract class MatchingBaseFragment extends Fragment implements Observer 
                 ImageView iv = (ImageView) getView().findViewById(resources.getIdentifier("flag" + i, "id", packageName));
                 iv.setImageResource(target.getMipmapId());
                 i++;
+                iv.invalidate();
 
             }
-            new Handler().postDelayed(new Runnable() {
+            handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     int size = board.size();
+                    GridView gridView = getGridView();
                     for (int i = 0; i < size; i++) {
-                        ImageView itemAtPosition = (ImageView) getGridView().getItemAtPosition(i);
+                        ImageView itemAtPosition = (ImageView) gridView.getItemAtPosition(i);
                         if (itemAtPosition != null) {
-                            itemAtPosition.setImageResource(CARD_RES_ID);
-                            board.get(i).setState(Flag.OpenState.CLOSED);
+                            closeFlag(itemAtPosition);
                         }
                     }
+//                    ((TaggedImageAdapter) gridView.getAdapter()).notifyDataSetChanged();
+//                    gridView.invalidateViews();
                     chooseState = ChooseState.CHOOSE_1;
                 }
             }, WAIT_MILLIS);
             isNew = false;
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        handler.removeCallbacksAndMessages(null);
+        super.onDestroyView();
     }
 
     public abstract int getEdgeLength();
