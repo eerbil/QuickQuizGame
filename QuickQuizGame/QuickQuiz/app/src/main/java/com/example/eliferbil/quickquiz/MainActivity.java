@@ -38,9 +38,10 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.Game
     @Override
     public void itemClicked(long id) {
 
+        Game game = Game.getInstance();
         View fragmentContainer = findViewById(R.id.gameFragment);
         if (fragmentContainer != null) {
-
+            User user;
             Fragment nextFragment;
             switch ((int) id) {
                 case 0:
@@ -48,34 +49,39 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.Game
                     bpl = tm;
                     transitionManager = tm;
                     getSupportFragmentManager().addOnBackStackChangedListener(tm);
+                    String username = game.getUser().getUsername();
+                    user = new User(username);
                     nextFragment = new GameFragment();
                     break;
                 case 1:
                     bpl = null;
                     transitionManager = TabletMemoTransitionManager.get(this);
-                    Game game = Game.getInstance();
-                    game.setUser(new MortalUser(game.getUser()));
+                    user = new MortalUser(game.getUser());
                     nextFragment = new MatchingEasyFragment();
                     break;
                 default:
                     throw new IllegalArgumentException("Unknown Id");
             }
+            game.setUser(user);
             clearBackstack();
             pushDetailFragment(nextFragment);
         } else {
+            User user;
             Class<?> nextActivity;
             switch ((int) id) {
                 case 0:
+                    String username = game.getUser().getUsername();
+                    user = new User(username);
                     nextActivity = PhoneGameActivity.class;
                     break;
                 case 1:
-                    Game game = Game.getInstance();
-                    game.setUser(new MortalUser(game.getUser()));
+                    user = new MortalUser(game.getUser());
                     nextActivity = PhoneMemoActivity.class;
                     break;
                 default:
                     throw new IllegalArgumentException("Unknown Id");
             }
+            game.setUser(user);
             Intent intent = new Intent(this, nextActivity);
             startActivity(intent);
         }
@@ -94,8 +100,14 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.Game
 
     @Override
     public void pushDetailFragment(Fragment fragment, boolean addToBackStack) {
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.gameFragment, fragment);
+
+        FragmentManager sfm = getSupportFragmentManager();
+        FragmentTransaction ft = sfm.beginTransaction();
+        Fragment current = sfm.findFragmentById(R.id.gameFragment);
+        if (current != null) {
+            ft.hide(current);
+        }
+        ft.add(R.id.gameFragment, fragment);
         if (addToBackStack) {
             ft.addToBackStack(null);
         }

@@ -77,6 +77,9 @@ public class QuestionPresenter {
 
     private void endQuestion(Question.AnswerState as) {
 
+        // Show correct answer
+        view.displayAnswerStatus(answerOrder(question.correctAnswer()), true);
+
         finalState = as;
         question.setAnswerState(as);
 
@@ -97,9 +100,6 @@ public class QuestionPresenter {
         Answer answer = question.getAnswers().get(ansOrder);
         view.displayAnswerStatus(ansOrder, answer.isCorrect());
 
-        // Show correct answer
-        view.displayAnswerStatus(answerOrder(question.correctAnswer()), true);
-
         endQuestion(answer.isCorrect() ? Question.AnswerState.CORRECT : Question.AnswerState.INCORRECT);
 
     }
@@ -114,6 +114,7 @@ public class QuestionPresenter {
     }
 
     public void questionEnded() {
+        transitionManager.setBackPressedListener(null);
         transitionManager.questionEnded();
     }
 

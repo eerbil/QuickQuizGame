@@ -10,7 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.eliferbil.quickquiz.MainActivity">
 
-    <!--TODO: MenuFragmentte sorun var-->
     <fragment
         class="com.example.eliferbil.quickquiz.MenuFragment"
         android:layout_width="match_parent"

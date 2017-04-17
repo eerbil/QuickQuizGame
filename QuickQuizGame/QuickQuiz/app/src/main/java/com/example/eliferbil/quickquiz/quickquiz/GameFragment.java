@@ -27,7 +27,6 @@ public class GameFragment extends Fragment implements Observer {
 
     @IdRes
     private int lastButtonId;
-    private View view;
     private TransitionManager transitionManager;
 
     @Override
@@ -75,10 +74,8 @@ public class GameFragment extends Fragment implements Observer {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        if (view == null) {
-            view = inflater.inflate(R.layout.fragment_game, container, false);
-        }
-        return view;
+        return inflater.inflate(R.layout.fragment_game, container, false);
+
     }
 
     @Override

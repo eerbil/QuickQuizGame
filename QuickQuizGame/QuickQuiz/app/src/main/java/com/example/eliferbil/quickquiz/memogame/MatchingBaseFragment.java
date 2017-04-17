@@ -91,7 +91,7 @@ public abstract class MatchingBaseFragment extends Fragment implements Observer 
 
         User user = Game.getInstance().getUser();
         this.update(user, user.getScore());
-        setUIHealth(((MortalUser) user).getHealth(), 4); // TODO Parameterize
+        setUIHealth(((MortalUser) user).getHealth(), MortalUser.INIT_HEALTH);
 
         View view = getView();
         GridView gridview = (GridView) view.findViewById(R.id.cardGrid);
