@@ -15,24 +15,12 @@
         android:text="GameOS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="60sp"
+        android:textSize="50sp"
         android:id="@+id/title"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:layout_gravity="center"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:text="Hello there! Just enter your username below to start the game."
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="20dp"
-        android:id="@+id/description"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:textSize="24sp"
-        android:textAlignment="center" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -41,7 +29,7 @@
         android:inputType="textPersonName"
         android:hint="Username"
         android:ems="10"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:id="@+id/username"
         android:layout_centerHorizontal="true" />
 
@@ -52,7 +40,7 @@
         android:inputType="textPassword"
         android:hint="Password"
         android:ems="10"
-        android:layout_margin="20dp"
+        android:layout_margin="16dp"
         android:id="@+id/password"
         android:layout_centerHorizontal="true" />
 
@@ -61,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:layout_centerHorizontal="true"
         android:id="@+id/start" />
 
@@ -69,7 +57,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="20dp"
         android:layout_centerHorizontal="true"
         android:id="@+id/errorMessage"/>
 
@@ -78,7 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:layout_centerHorizontal="true"
         android:id="@+id/signup" />
 

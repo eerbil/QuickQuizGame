@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    android:orientation="vertical"
+    tools:context="com.example.eliferbil.quickquiz.SignupActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Signup to GameOS"
+        android:textAlignment="center"
+        android:layout_margin="30dp"
+        android:id="@+id/signupHeader"
+        android:textSize="34sp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:text="Username: "
+                android:textSize="20sp"/>
+
+            <EditText
+                android:layout_width="200dp"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:id="@+id/usernameBox"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:text="Password: "
+                android:textSize="20sp"/>
+
+            <EditText
+                android:layout_width="200dp"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:id="@+id/passwordBox"
+                android:inputType="textPassword"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:text="Repeat Password: "
+                android:textSize="20sp"/>
+
+            <EditText
+                android:layout_width="200dp"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:id="@+id/passwordRepeatBox"
+                android:inputType="textPassword"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:text="Name: "
+                android:textSize="20sp"/>
+
+            <EditText
+                android:layout_width="200dp"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:id="@+id/nameBox"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:text="Surname: "
+                android:textSize="20sp"/>
+
+            <EditText
+                android:layout_width="200dp"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:id="@+id/surnameBox"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:text="City: "
+                android:textSize="20sp"/>
+
+            <EditText
+                android:layout_width="200dp"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:id="@+id/cityBox"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Submit"
+                android:id="@+id/userSubmit"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

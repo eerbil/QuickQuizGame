@@ -26,6 +26,9 @@ public class MenuFragment extends ListFragment {
                              Bundle savedInstanceState) {
         gamesList[0]="Quick Quiz";
         gamesList[1]="Flag Match";
+//        gamesList[2]="Profile";
+//        gamesList[3]="Friend List";
+//        gamesList[4]="High Scores";
 
         View view = super.onCreateView(inflater,container,savedInstanceState);
 
