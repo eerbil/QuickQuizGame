@@ -43,7 +43,17 @@
         android:ems="10"
         android:layout_margin="20dp"
         android:id="@+id/username"
-        android:layout_below="@+id/description"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="Password"
+        android:ems="10"
+        android:layout_margin="20dp"
+        android:id="@+id/password"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -52,7 +62,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="20dp"
-        android:layout_below="@+id/username"
         android:layout_centerHorizontal="true"
         android:id="@+id/start" />
 
@@ -61,8 +70,16 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="20dp"
-        android:layout_below="@+id/username"
         android:layout_centerHorizontal="true"
-        android:id="@+id/errorMessage" />
+        android:id="@+id/errorMessage"/>
+
+    <Button
+        android:text="Sign Up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/signup" />
 
 </LinearLayout>
