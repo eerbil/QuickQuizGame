@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textSize="24sp"
+        android:textAlignment="center"
         android:layout_margin="20dp"
         android:text="What kind of a game do you want to play?" />
 

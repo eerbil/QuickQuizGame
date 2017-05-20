@@ -19,7 +19,6 @@ public class MatchingEasyFragment extends MatchingBaseFragment {
         return inflater.inflate(com.example.eliferbil.quickquiz.R.layout.fragment_matching_easy, container, false);
     }
 
-
     @Override
     public int getEdgeLength() {
         return 4;

@@ -5,69 +5,77 @@
     android:layout_margin="16dp"
     tools:context="com.example.eliferbil.quickquiz.ProfileFragment"
     android:orientation="vertical">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/usernameHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:textSize="30sp"
+            android:text="Change Username: " />
 
-    <TextView
-        android:id="@+id/usernameHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="20dp"
-        android:textSize="30sp"
-        android:text="Change Username: " />
+        <EditText
+            android:id="@+id/newUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:inputType="textPersonName"
+            android:hint="New Username" />
 
-    <EditText
-        android:id="@+id/newUsername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_gravity="center"
-        android:layout_margin="20dp"
-        android:inputType="textPersonName"
-        android:hint="New Username" />
+        <Button
+            android:id="@+id/submitUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:text="Submit" />
 
-    <Button
-        android:id="@+id/submitUsername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="20dp"
-        android:text="Submit" />
+        <TextView
+            android:id="@+id/passwordHeader"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:textSize="30sp"
+            android:layout_height="wrap_content"
+            android:text="Change Password: " />
 
-    <TextView
-        android:id="@+id/passwordHeader"
-        android:layout_width="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="20dp"
-        android:textSize="30sp"
-        android:layout_height="wrap_content"
-        android:text="Change Password: " />
+        <EditText
+            android:id="@+id/oldPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Old Password" />
 
-    <EditText
-        android:id="@+id/oldPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="20dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Old Password" />
+        <EditText
+            android:id="@+id/newPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:hint="New Password"/>
 
-    <EditText
-        android:id="@+id/newPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="20dp"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:hint="New Password"/>
+        <Button
+            android:id="@+id/submitPassword"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:layout_height="wrap_content"
+            android:text="Submit" />
 
-    <Button
-        android:id="@+id/submitPassword"
-        android:layout_width="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="20dp"
-        android:layout_height="wrap_content"
-        android:text="Submit" />
-
+    </LinearLayout>
+</ScrollView>
 </LinearLayout>

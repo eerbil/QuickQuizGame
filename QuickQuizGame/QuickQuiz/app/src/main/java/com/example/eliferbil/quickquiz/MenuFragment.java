@@ -14,7 +14,7 @@ import android.widget.ListView;
  * A simple {@link Fragment} subclass.
  */
 public class MenuFragment extends ListFragment {
-    public static String[] gamesList = new String[2];
+    public static String[] gamesList = new String[5];
 
     public interface GameListListener {
         void itemClicked(long id);
@@ -26,9 +26,9 @@ public class MenuFragment extends ListFragment {
                              Bundle savedInstanceState) {
         gamesList[0]="Quick Quiz";
         gamesList[1]="Flag Match";
-//        gamesList[2]="Profile";
-//        gamesList[3]="Friend List";
-//        gamesList[4]="High Scores";
+        gamesList[2]="Profile";
+        gamesList[3]="Friend List";
+        gamesList[4]="High Scores";
 
         View view = super.onCreateView(inflater,container,savedInstanceState);
 

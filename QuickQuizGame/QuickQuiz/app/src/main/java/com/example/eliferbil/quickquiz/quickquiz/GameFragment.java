@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-public class GameFragment extends Fragment implements Observer {
+public class GameFragment extends android.app.Fragment implements Observer {
     private static final Game GAME = Game.getInstance();
     private static final String LAST_BUTTON_BUNDLE_KEY = "last_button";
 

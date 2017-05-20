@@ -2,40 +2,31 @@
 <items version="2" >
 
     <item
-        is-multidex="true"
-        jar="/Users/eliferbil/Documents/Uni/COMP319/Comp319-Homeworks/QuickQuizGame/QuickQuiz/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/Users/eliferbil/Library/Android/sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.2/constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="aed4046c041edd20edff2161358b1a57ab8ce676">
-        <dex dex="/Users/eliferbil/Documents/Uni/COMP319/Comp319-Homeworks/QuickQuizGame/QuickQuiz/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_c1a150b70bd2ade34f5e8fa010012e0355a7dd61/classes.dex" />
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="/Users/eliferbil/Documents/Uni/COMP319/Comp319-Homeworks/QuickQuizGame/QuickQuiz/app/build/intermediates/pre-dexed/debug/constraint-layout-solver-1.0.2_facab5085e05914e6d4659ae9c52eb284296cfc1.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="/Users/eliferbil/.android/build-cache/fff91992927648175d74275ff8db08d5bf5a8e05/output/jars/classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/Users/eliferbil/.android/build-cache/d31a79121757a84911c62432d445d04c3da5a0a6/output/jars/classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
-        <dex dex="/Users/eliferbil/Documents/Uni/COMP319/Comp319-Homeworks/QuickQuizGame/QuickQuiz/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_c5a7c72caeba70b4e0b56c400536392f1ae32435/classes.dex" />
+        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
+        <dex dex="/Users/eliferbil/Documents/Uni/COMP319/Comp319-Homeworks/QuickQuizGame/QuickQuiz/app/build/intermediates/pre-dexed/debug/classes_4a7275c654eb6fef15873dd88815ff871a3caf7a.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="/Users/eliferbil/.android/build-cache/c9c0e42d18ed0bfcb505af3dd6067e94cc440206/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
-        <dex dex="/Users/eliferbil/Documents/Uni/COMP319/Comp319-Homeworks/QuickQuizGame/QuickQuiz/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_37eabd145badcccc625ed2ff10027e3da0e4856a/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
+        is-multidex="false"
         jar="/Users/eliferbil/.android/build-cache/9b1894c093fb6fa7ada4d6c246227a782887e7f5/output/jars/classes.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
-        <dex dex="/Users/eliferbil/Documents/Uni/COMP319/Comp319-Homeworks/QuickQuizGame/QuickQuiz/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f431b98abeafbbc7c99c5dc8b302d4bd8333f13d/classes.dex" />
+        <dex dex="/Users/eliferbil/Documents/Uni/COMP319/Comp319-Homeworks/QuickQuizGame/QuickQuiz/app/build/intermediates/pre-dexed/debug/classes_f431b98abeafbbc7c99c5dc8b302d4bd8333f13d.jar" />
     </item>
     <item
         is-multidex="true"
@@ -47,58 +38,85 @@
         <dex dex="/Users/eliferbil/Documents/Uni/COMP319/Comp319-Homeworks/QuickQuizGame/QuickQuiz/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_577fef7b6614ca60866d522dae79afd79f74836b/classes.dex" />
     </item>
     <item
-        is-multidex="true"
-        jar="/Users/eliferbil/.android/build-cache/5708f7021e58993102e6a2d128404726b40ac15f/output/jars/classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/Users/eliferbil/.android/build-cache/c9c0e42d18ed0bfcb505af3dd6067e94cc440206/output/jars/classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
-        <dex dex="/Users/eliferbil/Documents/Uni/COMP319/Comp319-Homeworks/QuickQuizGame/QuickQuiz/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_0ab6e328cd51b36d8713fc30f2cf6efa0601f0df/classes.dex" />
+        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
+        <dex dex="/Users/eliferbil/Documents/Uni/COMP319/Comp319-Homeworks/QuickQuizGame/QuickQuiz/app/build/intermediates/pre-dexed/debug/classes_37eabd145badcccc625ed2ff10027e3da0e4856a.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="/Users/eliferbil/.android/build-cache/2b0abc6f4b900234d0ebea3f1acc1cff432250c2/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
-        <dex dex="/Users/eliferbil/Documents/Uni/COMP319/Comp319-Homeworks/QuickQuizGame/QuickQuiz/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b59c7009f71b43c50ef736002eb72f3ea0aeb49b/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/eliferbil/.android/build-cache/521647c2eac2037ee54f1c42c409e5c35d6b36ba/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
-        <dex dex="/Users/eliferbil/Documents/Uni/COMP319/Comp319-Homeworks/QuickQuizGame/QuickQuiz/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b61931ea8742b849dfc53f8bdce5c58478677c96/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
+        is-multidex="false"
         jar="/Users/eliferbil/.android/build-cache/923a682c1db95861af20d8a007c9f7eacd3f5b95/output/jars/classes.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/Users/eliferbil/Documents/Uni/COMP319/Comp319-Homeworks/QuickQuizGame/QuickQuiz/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_44eeeaeb78b697a08a1f78b6109080f0859a5651/classes.dex" />
+        <dex dex="/Users/eliferbil/Documents/Uni/COMP319/Comp319-Homeworks/QuickQuizGame/QuickQuiz/app/build/intermediates/pre-dexed/debug/classes_44eeeaeb78b697a08a1f78b6109080f0859a5651.jar" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/eliferbil/.android/build-cache/68a9113411945f67698705193713868d0599862a/output/jars/classes.jar"
+        jar="/Users/eliferbil/Documents/Uni/COMP319/Comp319-Homeworks/QuickQuizGame/QuickQuiz/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="aed4046c041edd20edff2161358b1a57ab8ce676">
+        <dex dex="/Users/eliferbil/Documents/Uni/COMP319/Comp319-Homeworks/QuickQuizGame/QuickQuiz/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_c1a150b70bd2ade34f5e8fa010012e0355a7dd61/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/eliferbil/.android/build-cache/2b0abc6f4b900234d0ebea3f1acc1cff432250c2/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
+        <dex dex="/Users/eliferbil/Documents/Uni/COMP319/Comp319-Homeworks/QuickQuizGame/QuickQuiz/app/build/intermediates/pre-dexed/debug/classes_b59c7009f71b43c50ef736002eb72f3ea0aeb49b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/eliferbil/.android/build-cache/521647c2eac2037ee54f1c42c409e5c35d6b36ba/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
+        <dex dex="/Users/eliferbil/Documents/Uni/COMP319/Comp319-Homeworks/QuickQuizGame/QuickQuiz/app/build/intermediates/pre-dexed/debug/classes_b61931ea8742b849dfc53f8bdce5c58478677c96.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/eliferbil/.android/build-cache/ffb7a13719cb129b012417c24f0e344c997a4a3c/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="/Users/eliferbil/Documents/Uni/COMP319/Comp319-Homeworks/QuickQuizGame/QuickQuiz/app/build/intermediates/pre-dexed/debug/classes_5ce387a15ebc93e43fb2e0733bb765f274f26542.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/eliferbil/.android/build-cache/68a9113411945f67698705193713868d0599862a/output/jars/classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
-        <dex dex="/Users/eliferbil/Documents/Uni/COMP319/Comp319-Homeworks/QuickQuizGame/QuickQuiz/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_49daffdf1e23dbb5ed23a42058349f9f3fdba65a/classes.dex" />
+        <dex dex="/Users/eliferbil/Documents/Uni/COMP319/Comp319-Homeworks/QuickQuizGame/QuickQuiz/app/build/intermediates/pre-dexed/debug/classes_49daffdf1e23dbb5ed23a42058349f9f3fdba65a.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="/Users/eliferbil/.android/build-cache/d31a79121757a84911c62432d445d04c3da5a0a6/output/jars/classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/Users/eliferbil/.android/build-cache/5708f7021e58993102e6a2d128404726b40ac15f/output/jars/classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
-        <dex dex="/Users/eliferbil/Documents/Uni/COMP319/Comp319-Homeworks/QuickQuizGame/QuickQuiz/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_4a7275c654eb6fef15873dd88815ff871a3caf7a/classes.dex" />
+        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
+        <dex dex="/Users/eliferbil/Documents/Uni/COMP319/Comp319-Homeworks/QuickQuizGame/QuickQuiz/app/build/intermediates/pre-dexed/debug/classes_0ab6e328cd51b36d8713fc30f2cf6efa0601f0df.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/eliferbil/.android/build-cache/fff91992927648175d74275ff8db08d5bf5a8e05/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
+        <dex dex="/Users/eliferbil/Documents/Uni/COMP319/Comp319-Homeworks/QuickQuizGame/QuickQuiz/app/build/intermediates/pre-dexed/debug/classes_c5a7c72caeba70b4e0b56c400536392f1ae32435.jar" />
     </item>
 
 </items>

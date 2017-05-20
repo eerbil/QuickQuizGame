@@ -59,7 +59,7 @@ public class QuickQuizTabletTransitionManager implements GameFragment.Transition
         nextOnBackStackChangedAction = new Runnable() {
             @Override
             public void run() {
-                ((GameFragment) mainActivity.getCurrentDetailFragment()).onQuestionEnded(selectedQuestion);
+               // ((GameFragment) mainActivity.getCurrentDetailFragment()).onQuestionEnded(selectedQuestion);
             }
         };
     }

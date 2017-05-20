@@ -4,4 +4,14 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="game_over">Game Over</string>
+    <string name="open_drawer">Open drawer</string>
+    <string name="close_drawer">Close drawer</string>
+
+    <string-array name="friends">
+        <item>friend1</item>
+        <item>friend2</item>
+        <item>friend3</item>
+        <item>friend4</item>
+    </string-array>
+
 </resources>

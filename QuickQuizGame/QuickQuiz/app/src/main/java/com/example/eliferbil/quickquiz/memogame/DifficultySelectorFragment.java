@@ -8,11 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.eliferbil.quickquiz.R;
+import com.example.eliferbil.quickquiz.User;
+import com.example.eliferbil.quickquiz.quickquiz.Game;
+import com.example.eliferbil.quickquiz.quickquiz.GameFragment;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DifficultySelectorFragment extends Fragment {
+public class DifficultySelectorFragment extends android.app.Fragment implements View.OnClickListener{
 
 
     public DifficultySelectorFragment() {
@@ -25,6 +28,47 @@ public class DifficultySelectorFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_difficulty_selector, container, false);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState){
+        super.onActivityCreated(savedInstanceState);
+        listenClickFor(R.id.fourbyfour);
+        listenClickFor(R.id.fivebyfive);
+        listenClickFor(R.id.sixbysix);
+    }
+
+    protected void listenClickFor(int... ids) {
+        for (int id : ids) {
+            getView().findViewById(id).setOnClickListener(this);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        Game game = Game.getInstance();
+        User user;
+        android.app.Fragment nextFragment;
+        android.app.FragmentTransaction ft = getFragmentManager().beginTransaction();
+        switch (v.getId()) {
+            case R.id.fourbyfour:
+                nextFragment = new MatchingEasyFragment();
+                ft.replace(R.id.content_frame, nextFragment, "visible_fragment");
+                break;
+            case R.id.fivebyfive:
+                nextFragment = new MatchingMediumFragment();
+                ft.replace(R.id.content_frame, nextFragment, "visible_fragment");
+                break;
+            case R.id.sixbysix:
+                nextFragment = new MatchingHardFragment();
+                ft.replace(R.id.content_frame, nextFragment, "visible_fragment");
+                break;
+            default:
+                break;
+        }
+        ft.addToBackStack(null);
+        ft.setTransition(android.app.FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.commit();
     }
 
 }

@@ -49,7 +49,7 @@ public class PhoneGameActivity extends PhoneBaseActivity implements GameFragment
         finish();
     }
 
-    @Override
+    /*@Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == QUESTION_REQUEST && resultCode == RESULT_OK && data != null) {
             Question q = data.getParcelableExtra(PhoneQuestionActivity.QUESTION_RESULT_KEY);
@@ -57,5 +57,5 @@ public class PhoneGameActivity extends PhoneBaseActivity implements GameFragment
             gf.onQuestionEnded(q);
 
         }
-    }
+    }*/
 }

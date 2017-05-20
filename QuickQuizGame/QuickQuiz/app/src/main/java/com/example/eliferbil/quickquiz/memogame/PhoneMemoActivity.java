@@ -17,9 +17,8 @@ public class PhoneMemoActivity extends PhoneBaseActivity implements MemoTransiti
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_memo);
-
-        Intent callingIntent = getIntent();
-        Fragment fragment;
+       /* Intent callingIntent = getIntent();
+        android.app. Fragment fragment;
         switch (callingIntent.getIntExtra(LEVEL_CODE, EASY)) {
             case EASY:
                 fragment = new MatchingEasyFragment();
@@ -35,9 +34,9 @@ public class PhoneMemoActivity extends PhoneBaseActivity implements MemoTransiti
         }
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.phoneMemoFragment, fragment);
+        ft.replace(R.id.content_frame, fragment);
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        ft.commit();
+        ft.commit();*/
     }
 
     @Override
