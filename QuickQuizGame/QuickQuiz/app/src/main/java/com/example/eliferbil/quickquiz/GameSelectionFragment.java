@@ -78,11 +78,11 @@ public class GameSelectionFragment extends android.app.Fragment implements View.
             case R.id.challenge:
                 switch ((int) gameId) {
                     case 0:
-                        nextFragment = new GameFragment();
+                        nextFragment = new ChallengeFriendFragment();
                         ft.replace(R.id.content_frame, nextFragment, "visible_fragment");
                         break;
                     case 1:
-                        nextFragment = new DifficultySelectorFragment();
+                        nextFragment = new ChallengeFriendFragment();
                         ft.replace(R.id.content_frame, nextFragment, "visible_fragment");
                         break;
                     default:
