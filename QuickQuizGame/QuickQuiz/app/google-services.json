@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "923977666433",
+    "firebase_url": "https://comp319-assignment-3.firebaseio.com",
+    "project_id": "comp319-assignment-3",
+    "storage_bucket": "comp319-assignment-3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923977666433:android:f6913a5727f3c972",
+        "android_client_info": {
+          "package_name": "com.example.eliferbil.quickquiz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "923977666433-9rbrle5p3i39qk5e7n2a3lc2a13hv7kh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.eliferbil.quickquiz",
+            "certificate_hash": "783de229d75d7a6902ef6740b186e63648c9bee7"
+          }
+        },
+        {
+          "client_id": "923977666433-vjnvoo5768edm7ih8uvae0bhdshdcjap.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1T-TuaduOarSvTAhI0Zg3tXYBmuMEFGU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "923977666433-vjnvoo5768edm7ih8uvae0bhdshdcjap.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

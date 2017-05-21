@@ -3,6 +3,7 @@ package com.example.eliferbil.quickquiz;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -11,14 +12,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.TextView;
-
-import com.example.eliferbil.quickquiz.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FriendListFragment extends android.app.ListFragment {
+public class FriendListFragment extends ListFragment {
 
     public FriendListFragment() {
         // Required empty public constructor
@@ -46,13 +44,13 @@ public class FriendListFragment extends android.app.ListFragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // handle item selection
-        android.app.Fragment nextFragment = new SearchFragment();
+        Fragment nextFragment = new SearchFragment();
         switch (item.getItemId()) {
             case R.id.action_search_friend:
-                android.app.FragmentTransaction ft = getFragmentManager().beginTransaction();
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.content_frame, nextFragment, "visible_fragment");
                 ft.addToBackStack(null);
-                ft.setTransition(android.app.FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                 ft.commit();
                 return true;
             default:

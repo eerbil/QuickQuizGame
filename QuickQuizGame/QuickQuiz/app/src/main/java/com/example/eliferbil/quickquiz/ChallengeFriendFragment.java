@@ -3,24 +3,20 @@ package com.example.eliferbil.quickquiz;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import com.example.eliferbil.quickquiz.R;
 import com.example.eliferbil.quickquiz.memogame.DifficultySelectorFragment;
-import com.example.eliferbil.quickquiz.memogame.MatchingEasyFragment;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ChallengeFriendFragment extends android.app.ListFragment {
+public class ChallengeFriendFragment extends ListFragment {
 
     public ChallengeFriendFragment() {
         // Required empty public constructor
@@ -41,12 +37,12 @@ public class ChallengeFriendFragment extends android.app.ListFragment {
                                 View itemView,
                                 int position,
                                 long id) {
-        android.app.Fragment nextFragment;
-        android.app.FragmentTransaction ft = getFragmentManager().beginTransaction();
+        Fragment nextFragment;
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
         nextFragment = new DifficultySelectorFragment();
         ft.replace(R.id.content_frame, nextFragment, "visible_fragment");
         ft.addToBackStack(null);
-        ft.setTransition(android.app.FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         ft.commit();
     }
 }

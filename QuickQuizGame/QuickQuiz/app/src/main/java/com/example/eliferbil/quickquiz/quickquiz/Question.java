@@ -3,6 +3,8 @@ package com.example.eliferbil.quickquiz.quickquiz;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.eliferbil.quickquiz.database.DTOs.DTO;
+
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +14,29 @@ import java.util.List;
  */
 
 public class Question implements Parcelable {
+
+    public static Question fromDTO(DTO.Question dto) {
+        if (dto == null) {
+            return null;
+        }
+        List<Answer> answers = new ArrayList<>(dto.answers != null ? dto.answers.size() : 0);
+        for (DTO.Answer answerDTO : dto.answers) {
+            answers.add(Answer.fromDTO(answerDTO));
+        }
+        return new Question(dto.category, dto.text, dto.score, answers);
+    }
+
+    public static DTO.Question toDTO(Question q) {
+        if (q == null) {
+            return null;
+        }
+        List<DTO.Answer> answerDTOs = new ArrayList<>(q.answers != null ? q.answers.size() : 0);
+        for (Answer answer : q.answers) {
+            answerDTOs.add(Answer.toDTO(answer));
+        }
+        return new DTO.Question(q.category, q.text, q.score, answerDTOs);
+    }
+
     private String category;
     private String text;
     private int score;

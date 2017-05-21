@@ -28,7 +28,7 @@ import java.util.Observer;
 import java.util.Set;
 
 
-public abstract class MatchingBaseFragment extends android.app.Fragment implements Observer {
+public abstract class MatchingBaseFragment extends Fragment implements Observer {
     public static final String TAG = "MatchingBaseFragment";
     public static final int WAIT_MILLIS = 5000;
     @DrawableRes

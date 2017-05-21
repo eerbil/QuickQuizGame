@@ -17,16 +17,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.eliferbil.quickquiz.memogame.MatchingEasyFragment;
-import com.example.eliferbil.quickquiz.GameSelectionFragment;
-import com.example.eliferbil.quickquiz.memogame.MortalUser;
-import com.example.eliferbil.quickquiz.memogame.PhoneMemoActivity;
-import com.example.eliferbil.quickquiz.memogame.TabletMemoTransitionManager;
-import com.example.eliferbil.quickquiz.quickquiz.Game;
-import com.example.eliferbil.quickquiz.quickquiz.GameFragment;
-import com.example.eliferbil.quickquiz.quickquiz.PhoneGameActivity;
-import com.example.eliferbil.quickquiz.quickquiz.QuickQuizTabletTransitionManager;
-
 
 public class MainActivity extends AppCompatActivity implements TabletActivity, TransitionManager.Provider {
 
@@ -93,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements TabletActivity, T
         // update the main content by replacing fragments
 
         int currentPosition = position;
-        android.app.Fragment fragment;
+        Fragment fragment;
         Bundle bundle = new Bundle();
         switch (position) {
             case 0:
@@ -116,13 +106,13 @@ public class MainActivity extends AppCompatActivity implements TabletActivity, T
                 fragment = new ScoreboardFragment();
                 break;
             default:
-                fragment = new android.app.Fragment();
+                fragment = new Fragment();
         }
 
-        android.app.FragmentTransaction ft = getFragmentManager().beginTransaction();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.content_frame, fragment, "visible_fragment");
         ft.addToBackStack(null);
-        ft.setTransition(android.app.FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         ft.commit();
 
         drawerLayout.closeDrawer(drawerList);
@@ -155,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements TabletActivity, T
         if (drawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
-        return false;
+        return super.onOptionsItemSelected(item);
     }
 
 
@@ -227,11 +217,11 @@ public class MainActivity extends AppCompatActivity implements TabletActivity, T
 
         FragmentManager sfm = getSupportFragmentManager();
         FragmentTransaction ft = sfm.beginTransaction();
-        Fragment current = sfm.findFragmentById(R.id.counterFragment);
+        Fragment current = sfm.findFragmentById(R.id.content_frame);
         if (current != null) {
             ft.hide(current);
         }
-        ft.add(R.id.counterFragment, fragment);
+        ft.add(R.id.content_frame, fragment);
         if (addToBackStack) {
             ft.addToBackStack(null);
         }

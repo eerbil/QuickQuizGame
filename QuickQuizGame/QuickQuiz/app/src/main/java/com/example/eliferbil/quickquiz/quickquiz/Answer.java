@@ -3,11 +3,21 @@ package com.example.eliferbil.quickquiz.quickquiz;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.eliferbil.quickquiz.database.DTOs.DTO;
+
 /**
  * Created by eliferbil on 26/02/2017.
  */
 
 public class Answer implements Parcelable {
+
+    public static Answer fromDTO(DTO.Answer dto) {
+        return dto != null ? new Answer(dto.text, dto.isCorrect) : null;
+    }
+
+    public static DTO.Answer toDTO(Answer answer) {
+        return answer != null ? new DTO.Answer(answer.text, answer.isCorrect) : null;
+    }
 
     private String text;
     private boolean isCorrect;

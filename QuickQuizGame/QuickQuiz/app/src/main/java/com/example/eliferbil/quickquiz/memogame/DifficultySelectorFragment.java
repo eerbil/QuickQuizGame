@@ -3,6 +3,7 @@ package com.example.eliferbil.quickquiz.memogame;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,12 +11,11 @@ import android.view.ViewGroup;
 import com.example.eliferbil.quickquiz.R;
 import com.example.eliferbil.quickquiz.User;
 import com.example.eliferbil.quickquiz.quickquiz.Game;
-import com.example.eliferbil.quickquiz.quickquiz.GameFragment;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DifficultySelectorFragment extends android.app.Fragment implements View.OnClickListener{
+public class DifficultySelectorFragment extends Fragment implements View.OnClickListener {
 
 
     public DifficultySelectorFragment() {
@@ -48,8 +48,8 @@ public class DifficultySelectorFragment extends android.app.Fragment implements 
     public void onClick(View v) {
         Game game = Game.getInstance();
         User user;
-        android.app.Fragment nextFragment;
-        android.app.FragmentTransaction ft = getFragmentManager().beginTransaction();
+        Fragment nextFragment;
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
         switch (v.getId()) {
             case R.id.fourbyfour:
                 nextFragment = new MatchingEasyFragment();
@@ -67,7 +67,7 @@ public class DifficultySelectorFragment extends android.app.Fragment implements 
                 break;
         }
         ft.addToBackStack(null);
-        ft.setTransition(android.app.FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         ft.commit();
     }
 

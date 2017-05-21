@@ -8,12 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ScoreboardFragment extends android.app.ListFragment {
+public class ScoreboardFragment extends ListFragment {
 
 
     public ScoreboardFragment() {
