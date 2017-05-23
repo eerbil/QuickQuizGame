@@ -16,7 +16,7 @@ import java.util.List;
 
 public class TaggedImageAdapter<T> extends BaseAdapter {
     private static final int IMAGE_EDGE_LENGTH = 100;
-    private Context mContext;
+    protected Context mContext;
     protected
     @DrawableRes
     int[] mipmapIds;

@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 
 public abstract class PhoneBaseActivity extends AppCompatActivity implements TransitionManager, TransitionManager.Provider {
     @Override
-    public <T extends TransitionManager> T provide() {
+    public <T extends TransitionManager> T provide(Object tmUser) {
         return (T) this;
     }
 }

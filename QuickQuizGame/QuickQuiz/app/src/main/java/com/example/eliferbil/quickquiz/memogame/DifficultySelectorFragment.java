@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.eliferbil.quickquiz.R;
+import com.example.eliferbil.quickquiz.TabletActivity;
 import com.example.eliferbil.quickquiz.User;
 import com.example.eliferbil.quickquiz.quickquiz.Game;
 
@@ -22,6 +23,9 @@ public class DifficultySelectorFragment extends Fragment implements View.OnClick
         // Required empty public constructor
     }
 
+    private TabletActivity getTabletActivity() {
+        return (TabletActivity) getActivity();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,9 +37,7 @@ public class DifficultySelectorFragment extends Fragment implements View.OnClick
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
-        listenClickFor(R.id.fourbyfour);
-        listenClickFor(R.id.fivebyfive);
-        listenClickFor(R.id.sixbysix);
+        listenClickFor(R.id.fourbyfour, R.id.fivebyfive, R.id.sixbysix);
     }
 
     protected void listenClickFor(int... ids) {
@@ -53,22 +55,17 @@ public class DifficultySelectorFragment extends Fragment implements View.OnClick
         switch (v.getId()) {
             case R.id.fourbyfour:
                 nextFragment = new MatchingEasyFragment();
-                ft.replace(R.id.content_frame, nextFragment, "visible_fragment");
                 break;
             case R.id.fivebyfive:
                 nextFragment = new MatchingMediumFragment();
-                ft.replace(R.id.content_frame, nextFragment, "visible_fragment");
                 break;
             case R.id.sixbysix:
                 nextFragment = new MatchingHardFragment();
-                ft.replace(R.id.content_frame, nextFragment, "visible_fragment");
                 break;
             default:
-                break;
+                throw new IllegalArgumentException("No such difficulty");
         }
-        ft.addToBackStack(null);
-        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        ft.commit();
+        getTabletActivity().pushDetailFragment(nextFragment);
     }
 
 }

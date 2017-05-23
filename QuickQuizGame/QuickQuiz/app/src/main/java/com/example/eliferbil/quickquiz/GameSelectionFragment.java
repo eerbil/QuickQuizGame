@@ -1,15 +1,14 @@
 package com.example.eliferbil.quickquiz;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.eliferbil.quickquiz.memogame.DifficultySelectorFragment;
-import com.example.eliferbil.quickquiz.quickquiz.Game;
 import com.example.eliferbil.quickquiz.quickquiz.GameFragment;
 
 
@@ -21,8 +20,22 @@ import com.example.eliferbil.quickquiz.quickquiz.GameFragment;
 public class GameSelectionFragment extends Fragment implements View.OnClickListener {
     // gameID == 0 for quickquiz 1 for memogame
     public int gameId = 0;
+    private TabletActivity ta;
+
+    public static GameSelectionFragment newInstance(Bundle gameInfo) {
+        GameSelectionFragment rdf = new GameSelectionFragment();
+        rdf.setArguments(gameInfo);
+        return rdf;
+    }
+
     public GameSelectionFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        ta = ((TabletActivity) context);
     }
 
     @Override
@@ -34,7 +47,7 @@ public class GameSelectionFragment extends Fragment implements View.OnClickListe
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState){
+    public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         listenClickFor(R.id.singlePlayer, R.id.challenge);
     }
@@ -46,45 +59,71 @@ public class GameSelectionFragment extends Fragment implements View.OnClickListe
     }
 
     @Override
-   public void onClick(View v) {
-        Game game = Game.getInstance();
-        User user;
-        Fragment nextFragment;
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
+    public void onClick(View v) {
+        Fragment next;
         switch (v.getId()) {
             case R.id.singlePlayer:
                 switch (gameId) {
                     case 0:
-                        nextFragment = new GameFragment();
-                        ft.replace(R.id.content_frame, nextFragment, "visible_fragment");
+                        next = new GameFragment();
                         break;
                     case 1:
-                        nextFragment = new DifficultySelectorFragment();
-                        ft.replace(R.id.content_frame, nextFragment, "visible_fragment");
+                        next = new DifficultySelectorFragment();
                         break;
                     default:
-                        throw new IllegalArgumentException("Unknown Id");
+                        throw new IllegalStateException("No such game type!");
                 }
                 break;
             case R.id.challenge:
-                switch (gameId) {
-                    case 0:
-                        nextFragment = new ChallengeFriendFragment();
-                        ft.replace(R.id.content_frame, nextFragment, "visible_fragment");
-                        break;
-                    case 1:
-                        nextFragment = new ChallengeFriendFragment();
-                        ft.replace(R.id.content_frame, nextFragment, "visible_fragment");
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Unknown Id");
-                }
+                next = new ChallengeFriendFragment();
+                next.setArguments(getArguments());
                 break;
             default:
-                break;
+                throw new IllegalArgumentException("No such game mode!");
         }
-        ft.addToBackStack(null);
-        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        ft.commit();
+        ta.pushDetailFragment(next);
     }
+
+    //    @Override
+//   public void onClick(View v) {
+//        Game game = Game.getInstance();
+//        User user;
+//        Fragment nextFragment;
+//        FragmentTransaction ft = getFragmentManager().beginTransaction();
+//        switch (v.getId()) {
+//            case R.id.singlePlayer:
+//                switch (gameId) {
+//                    case 0:
+//                        nextFragment = new GameFragment();
+//                        ft.replace(R.id.content_frame, nextFragment, "visible_fragment");
+//                        break;
+//                    case 1:
+//                        nextFragment = new DifficultySelectorFragment();
+//                        ft.replace(R.id.content_frame, nextFragment, "visible_fragment");
+//                        break;
+//                    default:
+//                        throw new IllegalArgumentException("Unknown Id");
+//                }
+//                break;
+//            case R.id.challenge:
+//                switch (gameId) {
+//                    case 0:
+//                        nextFragment = new ChallengeFriendFragment();
+//                        ft.replace(R.id.content_frame, nextFragment, "visible_fragment");
+//                        break;
+//                    case 1:
+//                        nextFragment = new ChallengeFriendFragment();
+//                        ft.replace(R.id.content_frame, nextFragment, "visible_fragment");
+//                        break;
+//                    default:
+//                        throw new IllegalArgumentException("Unknown Id");
+//                }
+//                break;
+//            default:
+//                break;
+//        }
+//        ft.addToBackStack(null);
+//        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+//        ft.commit();
+//    }
 }

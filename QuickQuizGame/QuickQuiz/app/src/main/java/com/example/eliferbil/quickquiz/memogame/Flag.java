@@ -85,6 +85,10 @@ public class Flag {
         }
     }
 
+//    public class Country{
+//
+//    }
+
     public enum OpenState {
         OPEN, CLOSED, ELIMINATED;
     }

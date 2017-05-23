@@ -33,6 +33,6 @@ public class MatchingMediumFragment extends MatchingBaseFragment {
 
     @Override
     public int getNextLevelCode() {
-        return MemoTransitionManager.HARD;
+        return MemoTransitionManager.FINISH;
     }
 }

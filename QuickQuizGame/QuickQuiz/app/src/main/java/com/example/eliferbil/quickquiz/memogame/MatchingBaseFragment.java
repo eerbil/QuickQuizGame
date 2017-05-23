@@ -48,10 +48,8 @@ public abstract class MatchingBaseFragment extends Fragment implements Observer 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof MemoTransitionManager) {
-            mtm = (MemoTransitionManager) context;
-        } else if (context instanceof TransitionManager.Provider) {
-            mtm = ((TransitionManager.Provider) context).provide();
+        if (context instanceof TransitionManager.Provider) {
+            mtm = ((TransitionManager.Provider) context).provide(this);
         } else {
             throw new IllegalArgumentException("Must provide TransitionManager");
         }
@@ -89,8 +87,13 @@ public abstract class MatchingBaseFragment extends Fragment implements Observer 
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        User user = Game.getInstance().getUser();
+        Game game = Game.getInstance();
+        User user = game.getUser();
         this.update(user, user.getScore());
+        if (!(user instanceof MortalUser)) {
+            user = new MortalUser(user);
+            game.setUser(user);
+        }
         setUIHealth(((MortalUser) user).getHealth(), MortalUser.INIT_HEALTH);
 
         View view = getView();

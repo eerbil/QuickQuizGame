@@ -59,10 +59,12 @@ public class FlagAdapter extends TaggedImageAdapter<FlagAdapter.IndexedFlagTag> 
                 break;
             case ELIMINATED:
                 mipmapId = 0;
+
                 break;
         }
         return mipmapId;
     }
+
 
     @DrawableRes
     private static int[] getMipmapIds(List<Flag> tags, @DrawableRes int cardResId) {

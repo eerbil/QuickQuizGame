@@ -3,7 +3,6 @@ package com.example.eliferbil.quickquiz.database;
 import android.util.Log;
 
 import com.example.eliferbil.quickquiz.User;
-import com.example.eliferbil.quickquiz.memogame.Flag;
 import com.example.eliferbil.quickquiz.quickquiz.Question;
 
 import java.util.List;
@@ -59,7 +58,7 @@ public class CachingDbManager implements DbManager {
         source.getQuestions(query, new ResultListener<List<Question>>() {
             @Override
             public void onComplete(List<Question> data) {
-                Log.i(TAG, "Retrieved Questions from Firebase");
+                Log.i(TAG, "Retrieved Questions from Firebase (" + query + ")");
                 cache.save(data, null);
                 if (listener != null) {
                     listener.onComplete(data);
@@ -70,14 +69,14 @@ public class CachingDbManager implements DbManager {
             public void onError(String error) {
                 if (listener != null) {
                     cache.getQuestions(query, listener);
-                    Log.i(TAG, "Retrieved Questions from SQLite");
+                    Log.i(TAG, "Retrieved Questions from SQLite (" + query + ")");
                 }
             }
         });
     }
 
     @Override
-    public void getFlags(FlagConfiguration conf, ResultListener<List<Flag>> listener) {
+    public void getFlagBlobs(FlagConfiguration conf, ResultListener<List<byte[]>> listener) {
 
     }
 

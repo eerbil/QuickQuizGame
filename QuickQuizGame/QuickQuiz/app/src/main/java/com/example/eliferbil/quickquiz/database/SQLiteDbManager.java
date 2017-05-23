@@ -10,7 +10,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.eliferbil.quickquiz.User;
 import com.example.eliferbil.quickquiz.database.DTOs.DTO;
-import com.example.eliferbil.quickquiz.memogame.Flag;
 import com.example.eliferbil.quickquiz.quickquiz.Question;
 
 import java.util.ArrayList;
@@ -95,7 +94,7 @@ public class SQLiteDbManager implements DbManager {
     }
 
     @Override
-    public void getFlags(FlagConfiguration conf, ResultListener<List<Flag>> listener) {
+    public void getFlagBlobs(FlagConfiguration conf, ResultListener<List<byte[]>> listener) {
 
     }
 
@@ -165,7 +164,9 @@ public class SQLiteDbManager implements DbManager {
         }
         db.setTransactionSuccessful();
         db.endTransaction();
-        listener.onComplete(questions);
+        if (listener != null) {
+            listener.onComplete(questions);
+        }
 
     }
 

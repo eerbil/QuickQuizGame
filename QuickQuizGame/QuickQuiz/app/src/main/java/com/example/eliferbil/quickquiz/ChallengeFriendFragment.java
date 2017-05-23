@@ -1,9 +1,9 @@
 package com.example.eliferbil.quickquiz;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +18,15 @@ import com.example.eliferbil.quickquiz.memogame.DifficultySelectorFragment;
  */
 public class ChallengeFriendFragment extends ListFragment {
 
+    TabletActivity ta;
     public ChallengeFriendFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        ta = (TabletActivity) context;
     }
 
     @Override
@@ -37,12 +44,8 @@ public class ChallengeFriendFragment extends ListFragment {
                                 View itemView,
                                 int position,
                                 long id) {
-        Fragment nextFragment;
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        nextFragment = new DifficultySelectorFragment();
-        ft.replace(R.id.content_frame, nextFragment, "visible_fragment");
-        ft.addToBackStack(null);
-        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        ft.commit();
+
+        Fragment nextFragment = new DifficultySelectorFragment();
+        ta.pushDetailFragment(nextFragment);
     }
 }

@@ -1,12 +1,10 @@
 package com.example.eliferbil.quickquiz.database;
 
 import android.support.annotation.NonNull;
-import android.text.TextUtils;
 import android.util.Log;
 
 import com.example.eliferbil.quickquiz.User;
 import com.example.eliferbil.quickquiz.database.DTOs.DTO;
-import com.example.eliferbil.quickquiz.memogame.Flag;
 import com.example.eliferbil.quickquiz.quickquiz.Question;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -19,6 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,22 +30,24 @@ import static com.example.eliferbil.quickquiz.database.DbManager.DbQuery.UserPar
 public class FirebaseDbManager implements DbManager {
 
     private static final String TAG = "FirebaseDbManager";
-    public static final int WRITE_TIMEOUT_MILLIS = 5 * 1000;
+    //    public static final int WRITE_TIMEOUT_MILLIS = 5 * 1000;
     public static final String QUESTIONS = "Questions";
     public static final String USERS = "Users";
+    public static final long TIMEOUT_MILLIS = 10000L;
     private final FirebaseAuth auth;
     private final FirebaseDatabase database;
     private final Object lock = new Object();
     private volatile boolean authRequestOnFly = false;
+    private volatile boolean isConnected;
 
 
     {
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
+        listenConnection();
     }
 
     public FirebaseDbManager() {
-
     }
 
     public FirebaseDbManager(String email, String password) {
@@ -147,37 +148,8 @@ public class FirebaseDbManager implements DbManager {
 
     @Override
     public void save(final List<Question> questions, final ResultListener<List<Question>> listener) {
-        ResultListener<Question> singleListener = new ResultListener<Question>() {
-            private final List<Question> questionResults = new ArrayList<>();
-            private final List<String> errors = new ArrayList<>();
-            private final int total = questions.size();
-
-            private void tryFinish() {
-                int qSize = questionResults.size();
-                int eSize = errors.size();
-                if (qSize + eSize >= total) {
-                    if (qSize > 0) {
-                        listener.onComplete(new ArrayList<>(questionResults));
-                    }
-                    if (eSize > 0) {
-                        listener.onError(TextUtils.join(", ", new ArrayList<>(errors)));
-                    }
-                }
-            }
-
-            @Override
-            public synchronized void onComplete(Question data) {
-                questionResults.add(data);
-                tryFinish();
-            }
-
-            @Override
-            public synchronized void onError(String error) {
-                errors.add(error);
-                tryFinish();
-
-            }
-        };
+        ResultListener<Question> singleListener =
+                new ListenerAggregator<>(questions.size(), listener);
 
         for (Question question : questions) {
             save(question, singleListener);
@@ -192,7 +164,7 @@ public class FirebaseDbManager implements DbManager {
         if (categoryQuery != null) {
             myRef = myRef.child(categoryQuery);
         }
-        ValueEventListener valueEventListener = new SimpleValueEventListener<>(
+        SimpleValueEventListener valueEventListener = new SimpleValueEventListener<>(
                 listener,
                 new Function<DTO.Question, Question>() {
                     @Override
@@ -203,11 +175,33 @@ public class FirebaseDbManager implements DbManager {
                 DTO.Question.class
         );
         myRef.addListenerForSingleValueEvent(valueEventListener);
+        timeoutListener(myRef, valueEventListener);
+
     }
 
     @Override
-    public void getFlags(FlagConfiguration conf, ResultListener<List<Flag>> listener) {
+    public void getFlagBlobs(FlagConfiguration conf, ResultListener<List<byte[]>> listener) {
+//        FirebaseStorage storage = FirebaseStorage.getInstance();
+//        StorageReference storageRef = storage.getReference();
+//        getFlagBlob(listener, storageRef);
+    }
 
+    private void getFlagBlob(final ResultListener<byte[]> listener, StorageReference storageRef) {
+        OnCompleteListener<byte[]> onCompleteListener = new OnCompleteListener<byte[]>() {
+            @Override
+            public void onComplete(@NonNull Task<byte[]> task) {
+                if (listener != null) {
+                    if (task.isSuccessful()) {
+                        byte[] blob = task.getResult();
+                        listener.onComplete(blob);
+
+                    } else {
+                        listener.onError(task.getException().getMessage());
+                    }
+                }
+            }
+        };
+        storageRef.child("users/me/profile.png").getBytes(Long.MAX_VALUE).addOnCompleteListener(onCompleteListener);
     }
 
     @Override
@@ -223,7 +217,7 @@ public class FirebaseDbManager implements DbManager {
             }
         }
 
-        ValueEventListener valueEventListener = new SimpleValueEventListener<>(
+        final SimpleValueEventListener valueEventListener = new SimpleValueEventListener<>(
                 listener,
                 new Function<DTO.User, User>() {
                     @Override
@@ -234,6 +228,8 @@ public class FirebaseDbManager implements DbManager {
                 DTO.User.class
         );
         dbRef.addListenerForSingleValueEvent(valueEventListener);
+        timeoutListener(dbRef, valueEventListener);
+
     }
 
     @Override
@@ -302,10 +298,61 @@ public class FirebaseDbManager implements DbManager {
 
     }
 
+    private void timeoutListener(final Query dbq, final SimpleValueEventListener listener) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    if (isConnected) {
+                        Thread.sleep(TIMEOUT_MILLIS);
+                    }
+                    dbq.removeEventListener(listener);
+                    listener.removeListener();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }).start();
+    }
+
+    private void timeoutListener(final SimpleCompletionListener listener) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    if (isConnected) {
+                        Thread.sleep(TIMEOUT_MILLIS);
+                    }
+                    listener.removeListener();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    private void listenConnection() {
+        DatabaseReference connectedRef = database.getReference(".info/connected");
+        connectedRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                isConnected = snapshot.getValue(Boolean.class);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                Log.e(TAG, "Listener was cancelled");
+            }
+        });
+    }
+
     private static class SimpleValueEventListener<T, R> implements ValueEventListener {
         private ResultListener<List<R>> listener;
         private Function<T, R> converter;
         private Class<T> dtoClass;
+
+        private int callCount = 0;
 
         public SimpleValueEventListener(ResultListener<List<R>> listener, Function<T, R> converter, Class<T> dtoClass) {
             this.listener = listener;
@@ -315,6 +362,7 @@ public class FirebaseDbManager implements DbManager {
 
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
+            callCount++;
             List<R> results = new ArrayList<>((int) dataSnapshot.getChildrenCount());
             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                 T dto = snapshot.getValue(dtoClass);
@@ -328,16 +376,25 @@ public class FirebaseDbManager implements DbManager {
 
         @Override
         public void onCancelled(DatabaseError databaseError) {
+            callCount++;
             if (listener != null) {
                 listener.onError(databaseError.getMessage());
             }
+        }
+
+        public void removeListener() {
+            if (listener != null && callCount <= 0) {
+                listener.onError("Exceeded Timeout Limit!");
+            }
+            listener = null;
         }
     }
 
     private static class SimpleCompletionListener<T> implements DatabaseReference.CompletionListener {
 
-        private final ResultListener<T> listener;
+        private ResultListener<T> listener;
         private final T result;
+        private int callCount = 0;
 
         public SimpleCompletionListener(T result, ResultListener<T> listener) {
             this.listener = listener;
@@ -346,6 +403,7 @@ public class FirebaseDbManager implements DbManager {
 
         @Override
         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+            callCount++;
             if (listener == null) {
                 return;
             }
@@ -355,54 +413,17 @@ public class FirebaseDbManager implements DbManager {
                 listener.onComplete(result);
             }
         }
+
+        public void removeListener() {
+            if (listener != null && callCount <= 0) {
+                listener.onError("Exceeded Timeout Limit!");
+            }
+            listener = null;
+        }
     }
 
     // Copied from Java 8 java.util.function
     interface Function<T, R> {
         R apply(T t);
     }
-
-//    @IgnoreExtraProperties
-//    private static class UserDTO {
-//        private String name;
-//        private String company;
-//        private String email;
-//        private String phone;
-//        Map<String, String> timestamp = ServerValue.TIMESTAMP;
-//
-//        public UserDTO() {
-//            // Default constructor required for calls to DataSnapshot.getValue(UserDTO.class)
-//        }
-//
-//        public UserDTO(String name, String company, String email, String phone) {
-//            this.name = name;
-//            this.company = company;
-//            this.email = email;
-//            this.phone = phone;
-//        }
-//
-//        public UserDTO(UserModel model) {
-//            this(model.getName(), model.getCompany(), model.getEmail(), model.getPhone());
-//        }
-//
-//        public String getName() {
-//            return name;
-//        }
-//
-//        public String getCompany() {
-//            return company;
-//        }
-//
-//        public String getEmail() {
-//            return email;
-//        }
-//
-//        public String getPhone() {
-//            return phone;
-//        }
-//
-//        public Map<String, String> getTimestamp() {
-//            return timestamp;
-//        }
-//    }
 }

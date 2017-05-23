@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.support.annotation.NonNull;
 
 import com.example.eliferbil.quickquiz.User;
-import com.example.eliferbil.quickquiz.memogame.Flag;
 import com.example.eliferbil.quickquiz.quickquiz.Question;
 
 import java.util.HashMap;
@@ -19,7 +18,7 @@ public interface DbManager {
 
     void getQuestions(DbQuery<DbQuery.QuestionParam> query, ResultListener<List<Question>> listener);
 
-    void getFlags(FlagConfiguration conf, ResultListener<List<Flag>> listener);
+    void getFlagBlobs(FlagConfiguration conf, ResultListener<List<byte[]>> listener);
 
     void getUsers(DbQuery<DbQuery.UserParam> query, ResultListener<List<User>> listener);
 
@@ -76,6 +75,13 @@ public interface DbManager {
         public Iterable<Map.Entry<String, String>> params() {
             // Warning: Representation exposure!
             return params.entrySet();
+        }
+
+        @Override
+        public String toString() {
+            return "DbQuery{" +
+                    "params=" + params +
+                    '}';
         }
 
         public enum UserParam implements KeyNameProvider {

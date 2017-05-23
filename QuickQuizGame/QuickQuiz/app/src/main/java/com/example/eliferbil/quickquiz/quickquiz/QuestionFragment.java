@@ -89,10 +89,8 @@ public class QuestionFragment extends Fragment implements BackPressedListener {
 
         QuestionPresenter.TransitionManager transitionManager;
         Context context = getContext();
-        if (context instanceof TransitionManager) {
-            transitionManager = (QuestionPresenter.TransitionManager) context;
-        } else if (context instanceof TransitionManager.Provider) {
-            transitionManager = ((TransitionManager.Provider) context).provide();
+        if (context instanceof TransitionManager.Provider) {
+            transitionManager = ((TransitionManager.Provider) context).provide(this);
         } else {
             throw new IllegalArgumentException("Must provide TransitionManager");
         }

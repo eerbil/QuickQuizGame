@@ -6,6 +6,6 @@ package com.example.eliferbil.quickquiz;
 
 public interface TransitionManager {
     interface Provider {
-        <T extends TransitionManager> T provide();
+        <T extends TransitionManager> T provide(Object tmUser);
     }
 }

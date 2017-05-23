@@ -17,6 +17,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.eliferbil.quickquiz.memogame.MatchingBaseFragment;
+import com.example.eliferbil.quickquiz.memogame.TabletMemoTransitionManager;
+import com.example.eliferbil.quickquiz.quickquiz.GameFragment;
+import com.example.eliferbil.quickquiz.quickquiz.QuestionFragment;
+import com.example.eliferbil.quickquiz.quickquiz.QuickQuizTabletTransitionManager;
+
 
 public class MainActivity extends AppCompatActivity implements TabletActivity, TransitionManager.Provider {
 
@@ -26,21 +32,22 @@ public class MainActivity extends AppCompatActivity implements TabletActivity, T
             selectItem(position);
         }
     }
-    
+
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
     private ListView drawerList;
-    
+
     BackPressedListener bpl;
     TransitionManager transitionManager;
     public static String[] gamesList = new String[5];
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        gamesList[0]="Quick Quiz";
-        gamesList[1]="Flag Match";
-        gamesList[2]="Profile";
-        gamesList[3]="Friend List";
-        gamesList[4]="High Scores";
+        gamesList[0] = "Quick Quiz";
+        gamesList[1] = "Flag Match";
+        gamesList[2] = "Profile";
+        gamesList[3] = "Friend List";
+        gamesList[4] = "High Scores";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         drawerList = (ListView) findViewById(R.id.drawer);
@@ -82,19 +89,18 @@ public class MainActivity extends AppCompatActivity implements TabletActivity, T
     private void selectItem(int position) {
         // update the main content by replacing fragments
 
-        int currentPosition = position;
+        //int currentPosition = position;
         Fragment fragment;
         Bundle bundle = new Bundle();
+
         switch (position) {
             case 0:
-                fragment = new GameSelectionFragment();
                 bundle.putInt("gameId", 0);
-                fragment.setArguments(bundle);
+                fragment = GameSelectionFragment.newInstance(bundle);
                 break;
             case 1:
-                fragment = new GameSelectionFragment();
                 bundle.putInt("gameId", 1);
-                fragment.setArguments(bundle);
+                fragment = GameSelectionFragment.newInstance(bundle);
                 break;
             case 2:
                 fragment = new ProfileFragment();
@@ -106,14 +112,16 @@ public class MainActivity extends AppCompatActivity implements TabletActivity, T
                 fragment = new ScoreboardFragment();
                 break;
             default:
-                fragment = new Fragment();
+                //fragment = new Fragment();
+                throw new IllegalArgumentException("Unknown position");
         }
 
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.content_frame, fragment, "visible_fragment");
-        ft.addToBackStack(null);
-        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        ft.commit();
+        pushDetailFragment(fragment);
+//        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//        ft.replace(R.id.content_frame, fragment, "visible_fragment");
+//        ft.addToBackStack(null);
+//        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+//        ft.commit();
 
         drawerLayout.closeDrawer(drawerList);
     }
@@ -121,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements TabletActivity, T
     public boolean onPrepareOptionsMenu(Menu menu) {
         // If the drawer is open, hide action items related to the content view
         boolean drawerOpen = drawerLayout.isDrawerOpen(drawerList);
-        if(menu.findItem(R.id.action_search_friend)!=null) {
+        if (menu.findItem(R.id.action_search_friend) != null) {
             menu.findItem(R.id.action_search_friend).setVisible(!drawerOpen);
         }
         return super.onPrepareOptionsMenu(menu);
@@ -235,7 +243,7 @@ public class MainActivity extends AppCompatActivity implements TabletActivity, T
 
     @Override
     public Fragment getCurrentDetailFragment() {
-        return getSupportFragmentManager().findFragmentById(R.id.counterFragment);
+        return getSupportFragmentManager().findFragmentById(R.id.content_frame);
     }
 
     @Override
@@ -264,7 +272,33 @@ public class MainActivity extends AppCompatActivity implements TabletActivity, T
     }
 
     @Override
-    public <T extends TransitionManager> T provide() {
-        return (T) transitionManager;
+    public void setTransitionManager(TransitionManager tm) {
+        bpl = null;
+        transitionManager = tm;
+    }
+
+    @Override
+    public void setBackPressedListener(BackPressedListener bpl) {
+        this.bpl = bpl;
+    }
+
+    @Override
+    public void addOnBackStackChangedListener(FragmentManager.OnBackStackChangedListener listener) {
+        getSupportFragmentManager().addOnBackStackChangedListener(listener);
+    }
+
+    @Override
+    public <T extends TransitionManager> T provide(Object tmUser) {
+        return (T) selectTransitionManager(tmUser);
+    }
+
+    private TransitionManager selectTransitionManager(Object t) {
+        if (t instanceof GameFragment || t instanceof QuestionFragment) {
+            return QuickQuizTabletTransitionManager.get(this);
+        } else if (t instanceof MatchingBaseFragment) {
+            return TabletMemoTransitionManager.get(this);
+        } else {
+            throw new IllegalArgumentException(t.getClass().getName() + " is not known!");
+        }
     }
 }

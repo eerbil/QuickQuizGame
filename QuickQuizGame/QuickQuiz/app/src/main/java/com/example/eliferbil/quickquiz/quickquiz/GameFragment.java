@@ -1,6 +1,7 @@
 package com.example.eliferbil.quickquiz.quickquiz;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -13,13 +14,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.eliferbil.quickquiz.R;
 import com.example.eliferbil.quickquiz.User;
+import com.example.eliferbil.quickquiz.database.ListenerAggregator;
 
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+
+import static com.example.eliferbil.quickquiz.database.DbManager.ResultListener;
 
 public class GameFragment extends Fragment implements Observer {
     private static final Game GAME = Game.getInstance();
@@ -29,13 +34,13 @@ public class GameFragment extends Fragment implements Observer {
     private int lastButtonId;
     private TransitionManager transitionManager;
 
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof TransitionManager) {
-            transitionManager = (TransitionManager) context;
-        } else if (context instanceof TransitionManager.Provider) {
-            transitionManager = ((TransitionManager.Provider) context).provide();
+
+        if (context instanceof TransitionManager.Provider) {
+            transitionManager = ((TransitionManager.Provider) context).provide(this);
         } else {
             throw new IllegalArgumentException("Must provide TransitionManager");
         }
@@ -45,14 +50,19 @@ public class GameFragment extends Fragment implements Observer {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
+
+
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        Activity act = getActivity();
-        bindButtonsToQuestions(act);
+        final Activity act = getActivity();
+
+        asyncLoadQuestions(act);
+
+
         ((Button) act.findViewById(R.id.startOver)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,13 +74,44 @@ public class GameFragment extends Fragment implements Observer {
             lastButtonId = savedInstanceState.getInt(LAST_BUTTON_BUNDLE_KEY);
         }
 
-        bindButtonsToQuestions(getActivity());
+        //bindButtonsToQuestions(getActivity());
 
         // Observe User for score change
         User user = GAME.getUser();
         user.addObserver(this);
         update(user, user.getScore());
     }
+
+    private void asyncLoadQuestions(final Activity act) {
+        final ProgressDialog pd = new ProgressDialog(act);
+        pd.setTitle("Loading Questions...");
+        pd.setMessage("Please Wait");
+        pd.setCancelable(false);
+        pd.show();
+
+        final int requestedCatCount = 3;
+        ListenerAggregator<List<Question>> aggListener =
+                new ListenerAggregator<>(requestedCatCount, new ResultListener<List<List<Question>>>() {
+                    @Override
+                    public void onComplete(List<List<Question>> data) {
+                        bindButtonsToQuestions(act);
+                        pd.dismiss();
+                    }
+
+                    @Override
+                    public void onError(String error) {
+                        Toast.makeText(
+                                getContext(),
+                                "Error while getting questions:" + error,
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
+        GAME.getFoodQuestions(new CategoryResultListener(Category.FOOD, aggListener));
+        GAME.getHistoryQuestions(new CategoryResultListener(Category.HISTORY, aggListener));
+        GAME.getMusicQuestions(new CategoryResultListener(Category.MUSIC, aggListener));
+
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -146,16 +187,16 @@ public class GameFragment extends Fragment implements Observer {
 
 
     private enum Category {
-        FOOD("food", GAME.getFoodQuestions()),
-        HISTORY("hist", GAME.getHistoryQuestions()),
-        MUSIC("music", GAME.getMusicQuestions());
+        FOOD("food"),
+        HISTORY("hist"),
+        MUSIC("music");
 
         private String idRoot;
         private List<Question> questionsFromCategory;
 
 
-        Category(String idRoot, List<Question> questionsFromCategory) {
-            this.questionsFromCategory = questionsFromCategory;
+        Category(String idRoot) {
+            //this.questionsFromCategory = questionsFromCategory;
             this.idRoot = idRoot;
         }
 
@@ -167,6 +208,10 @@ public class GameFragment extends Fragment implements Observer {
         public List<Question> getQuestionsFromCategory() {
             return questionsFromCategory;
         }
+
+        private void setQuestionsFromCategory(List<Question> questionsFromCategory) {
+            this.questionsFromCategory = questionsFromCategory;
+        }
     }
 
     public interface TransitionManager extends com.example.eliferbil.quickquiz.TransitionManager {
@@ -175,5 +220,27 @@ public class GameFragment extends Fragment implements Observer {
         void questionSelected(Question selected);
 
         void gameEnded();
+    }
+
+    private class CategoryResultListener implements ResultListener<List<Question>> {
+
+        private Category cat;
+        private ResultListener<List<Question>> aggregateListener;
+
+        public CategoryResultListener(Category cat, ResultListener<List<Question>> aggregateListener) {
+            this.cat = cat;
+            this.aggregateListener = aggregateListener;
+        }
+
+        @Override
+        public void onComplete(List<Question> data) {
+            cat.setQuestionsFromCategory(data);
+            aggregateListener.onComplete(data);
+        }
+
+        @Override
+        public void onError(String error) {
+            aggregateListener.onError(cat + error + "\n");
+        }
     }
 }

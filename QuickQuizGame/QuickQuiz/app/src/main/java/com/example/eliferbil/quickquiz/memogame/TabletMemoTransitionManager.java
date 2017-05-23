@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment;
 import com.example.eliferbil.quickquiz.TabletActivity;
 
 
-public class TabletMemoTransitionManager /*implements MemoTransitionManager*/ {
+public class TabletMemoTransitionManager implements MemoTransitionManager {
 
     private static TabletMemoTransitionManager ins;
 
@@ -24,7 +24,7 @@ public class TabletMemoTransitionManager /*implements MemoTransitionManager*/ {
         this.mainActivity = mainActivity;
     }
 
-    /*@Override
+    @Override
     public void nextLevel(int levelCode) {
         Fragment fragment;
         switch (levelCode) {
@@ -42,5 +42,5 @@ public class TabletMemoTransitionManager /*implements MemoTransitionManager*/ {
                 return;
         }
         mainActivity.pushDetailFragment(fragment, false);
-    }*/
+    }
 }
