@@ -91,6 +91,11 @@ public class CachingDbManager implements DbManager {
     }
 
     @Override
+    public void saveCurrentUser(User user, ResultListener<User> listener) {
+        source.saveCurrentUser(user, listener);
+    }
+
+    @Override
     public void signIn(User.Credentials cr, ResultListener<User> listener) {
         source.signIn(cr, listener);
     }

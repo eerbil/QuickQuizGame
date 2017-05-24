@@ -34,6 +34,7 @@ public class FirebaseDbManager implements DbManager {
     public static final String QUESTIONS = "Questions";
     public static final String USERS = "Users";
     public static final long TIMEOUT_MILLIS = 10000L;
+    public static final String FLAGS = "Flags";
     private final FirebaseAuth auth;
     private final FirebaseDatabase database;
     private final Object lock = new Object();
@@ -201,7 +202,7 @@ public class FirebaseDbManager implements DbManager {
                 }
             }
         };
-        storageRef.child("users/me/profile.png").getBytes(Long.MAX_VALUE).addOnCompleteListener(onCompleteListener);
+        storageRef.child(FLAGS).getBytes(Long.MAX_VALUE).addOnCompleteListener(onCompleteListener);
     }
 
     @Override
@@ -212,6 +213,10 @@ public class FirebaseDbManager implements DbManager {
         if (uid != null) {
             dbRef = dbRef.orderByKey().startAt(uid).limitToFirst(1);
         } else {
+            String orderBy = query.getOrderBy();
+            if (orderBy != null) {
+                dbRef = dbRef.orderByChild(orderBy);
+            }
             for (Map.Entry<String, String> entry : query.params()) {
                 dbRef = dbRef.equalTo(entry.getValue(), entry.getKey());
             }
@@ -238,6 +243,11 @@ public class FirebaseDbManager implements DbManager {
                 .setValue(
                         User.toDTO(user),
                         new SimpleCompletionListener<>(user, listener));
+    }
+
+    @Override
+    public void saveCurrentUser(User user, ResultListener<User> listener) {
+        save(auth.getCurrentUser().getUid(), user, listener);
     }
 
     @Override

@@ -1,7 +1,9 @@
 package com.example.eliferbil.quickquiz.memogame;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.Resources;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.DrawableRes;
@@ -12,10 +14,12 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.eliferbil.quickquiz.R;
 import com.example.eliferbil.quickquiz.TransitionManager;
 import com.example.eliferbil.quickquiz.User;
+import com.example.eliferbil.quickquiz.database.DbManager;
 import com.example.eliferbil.quickquiz.quickquiz.Game;
 
 import java.util.ArrayList;
@@ -60,25 +64,52 @@ public abstract class MatchingBaseFragment extends Fragment implements Observer 
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
         if (savedInstanceState == null) {
-            Game.getInstance().getUser().addObserver(this);
-            List<Flag.Country> temp = Arrays.asList(Flag.Country.values());
-            List<Flag.Country> countries = new ArrayList<Flag.Country>(temp);
-            Collections.shuffle(countries);
-            targets = new HashSet<>(countries.subList(0, getTargetNum()));
-            List<Flag.Country> flagCountries = new ArrayList<>(countries.size());
 
-            // Add targets twice
-            flagCountries.addAll(targets);
-            flagCountries.addAll(targets);
+            final ProgressDialog pd = new ProgressDialog(getContext());
+            pd.setTitle("Loading Flags...");
+            pd.setMessage("Please Wait");
+            pd.setCancelable(false);
+            pd.show();
 
-            int end = Math.min(countries.size(), getEdgeLength() * getEdgeLength() - getTargetNum());
-            flagCountries.addAll(countries.subList(getTargetNum(), end));
+            AsyncTask.execute(new Runnable() {
+                @Override
+                public void run() {
 
-            board = new ArrayList<Flag>(flagCountries.size());
-            for (Flag.Country c : flagCountries) {
-                board.add(new Flag(c));
-            }
-            Collections.shuffle(board);
+                    Game.getInstance().getUser().addObserver(MatchingBaseFragment.this);
+                    List<Flag.Country> temp = Arrays.asList(Flag.Country.values());
+                    List<Flag.Country> countries = new ArrayList<Flag.Country>(temp);
+                    Collections.shuffle(countries);
+                    targets = new HashSet<>(countries.subList(0, getTargetNum()));
+                    DbManager.Provider.getDefault().getFlagBlobs(
+                            new DbManager.FlagConfiguration(targets), new DbManager.ResultListener<List<byte[]>>() {
+                                @Override
+                                public void onComplete(List<byte[]> data) {
+
+                                }
+
+                                @Override
+                                public void onError(String error) {
+                                    Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                    List<Flag.Country> flagCountries = new ArrayList<>(countries.size());
+
+                    // Add targets twice
+                    flagCountries.addAll(targets);
+                    flagCountries.addAll(targets);
+
+                    int end = Math.min(countries.size(), getEdgeLength() * getEdgeLength() - getTargetNum());
+                    flagCountries.addAll(countries.subList(getTargetNum(), end));
+
+                    board = new ArrayList<Flag>(flagCountries.size());
+                    for (Flag.Country c : flagCountries) {
+                        board.add(new Flag(c));
+                    }
+                    Collections.shuffle(board);
+
+                }
+            });
         }
 
     }

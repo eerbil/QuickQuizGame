@@ -18,7 +18,7 @@ public class CounterFragment extends Fragment {
     //Number of seconds displayed on the stopwatch.
     private int seconds = 0;
     //Is the stopwatch running?
-    private boolean running = true;
+    private boolean running = false;
     //Was the stopwatch running?
     private boolean wasRunning;
 
@@ -26,6 +26,9 @@ public class CounterFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public void setRunning(boolean running) {
+        this.running = running;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

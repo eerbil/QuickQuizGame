@@ -10,14 +10,6 @@ public class MortalUser extends User {
     public static final int INIT_HEALTH = 4;
     private int health;
 
-    public int getHealth() {
-        return health;
-    }
-
-    public void decreaseHealth(int i) {
-        health -= i;
-    }
-
     public MortalUser(String username, int score, int health) {
         super(username, score);
         this.health = health;
@@ -33,6 +25,22 @@ public class MortalUser extends User {
     }
 
     public MortalUser(User u) {
-        this(u.getUsername());
+        super(u);
+        this.health = INIT_HEALTH;
+    }
+
+    @Override
+    public MortalUser newWithResetTransientStats() {
+        MortalUser newUser = new MortalUser(super.newWithResetTransientStats());
+        this.health = INIT_HEALTH;
+        return newUser;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void decreaseHealth(int i) {
+        health -= i;
     }
 }

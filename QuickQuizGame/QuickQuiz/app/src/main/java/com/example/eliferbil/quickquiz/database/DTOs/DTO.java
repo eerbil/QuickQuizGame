@@ -50,16 +50,18 @@ public final class DTO {
         public String name;
         public String surname;
         public String city;
+        public int onlineScore;
 
         public User() {
         }
 
-        public User(String username, String email, String name, String surname, String city) {
+        public User(String username, String email, String name, String surname, String city, int onlineScore) {
             this.username = username;
             this.email = email;
             this.name = name;
             this.surname = surname;
             this.city = city;
+            this.onlineScore = onlineScore;
         }
     }
 }

@@ -181,6 +181,11 @@ public class SQLiteDbManager implements DbManager {
     }
 
     @Override
+    public void saveCurrentUser(User user, ResultListener<User> listener) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public void signIn(User.Credentials cr, ResultListener<User> listener) {
         throw new UnsupportedOperationException();
     }

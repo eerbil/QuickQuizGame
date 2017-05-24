@@ -16,8 +16,9 @@ public class User extends Observable {
     private String city;
     private int score;
     private int questionsAnswered; // her soru cevaplandığında arttırılacak, 15 olduğunda scoreActivity açılacak
+    private int onlineScore;
 
-    public User(String username, String email, String name, String surname, String city, int score, int questionsAnswered) {
+    public User(String username, String email, String name, String surname, String city, int score, int questionsAnswered, int onlineScore) {
         this.username = username;
         this.email = email;
         this.name = name;
@@ -25,10 +26,11 @@ public class User extends Observable {
         this.city = city;
         this.score = score;
         this.questionsAnswered = questionsAnswered;
+        this.onlineScore = onlineScore;
     }
 
     public User(String username, int score) {
-        this(username, null, null, null, null, score, 0);
+        this(username, null, null, null, null, score, 0, score);
     }
 
     public User(String username) {
@@ -36,7 +38,23 @@ public class User extends Observable {
     }
 
     public User(String username, String email, String name, String surname, String city) {
-        this(username, email, name, surname, city, 0, 0);
+        this(username, email, name, surname, city, 0, 0, 0);
+    }
+
+    public User(User other) {
+        this(other.username, other.email, other.name, other.surname, other.city,
+                other.score, other.questionsAnswered, other.onlineScore);
+    }
+
+    public User(String username, String email, String name, String surname, String city, int onlineScore) {
+        this(username, email, name, surname, city, 0, 0, onlineScore);
+    }
+
+    public User newWithResetTransientStats() {
+        User newUser = new User(this);
+        newUser.score = 0;
+        newUser.questionsAnswered = 0;
+        return newUser;
     }
 
     public String getUsername() {
@@ -58,6 +76,18 @@ public class User extends Observable {
         setChanged();
         notifyObservers(score);
         clearChanged();
+    }
+
+    public int getOnlineScore() {
+        return onlineScore;
+    }
+
+    public void setOnlineScore(int onlineScore) {
+        this.onlineScore = onlineScore;
+    }
+
+    public void addToOnlineScore(int onlineScoreIncrement) {
+        setOnlineScore(getOnlineScore() + onlineScoreIncrement);
     }
 
     public void addScore(int score) {
@@ -105,11 +135,12 @@ public class User extends Observable {
     }
 
     public static DTO.User toDTO(User user) {
-        return new DTO.User(user.username, user.email, user.name, user.surname, user.city);
+        return new DTO.User(user.username, user.email, user.name,
+                user.surname, user.city, user.onlineScore);
     }
 
     public static User fromDTO(DTO.User dto) {
-        return new User(dto.username, dto.email, dto.name, dto.surname, dto.city);
+        return new User(dto.username, dto.email, dto.name, dto.surname, dto.city, dto.onlineScore);
     }
 
     public static class Credentials {

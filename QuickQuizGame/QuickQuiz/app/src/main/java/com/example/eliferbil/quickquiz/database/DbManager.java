@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.support.annotation.NonNull;
 
 import com.example.eliferbil.quickquiz.User;
+import com.example.eliferbil.quickquiz.memogame.Flag;
 import com.example.eliferbil.quickquiz.quickquiz.Question;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +25,8 @@ public interface DbManager {
     void getUsers(DbQuery<DbQuery.UserParam> query, ResultListener<List<User>> listener);
 
     void save(String uid, User user, ResultListener<User> listener);
+
+    void saveCurrentUser(User user, ResultListener<User> listener);
 
     void signIn(User.Credentials cr, ResultListener<User> listener);
 
@@ -47,9 +51,15 @@ public interface DbManager {
 
     class FlagConfiguration {
         public int limit;
+        public Collection<Flag.Country> coll;
 
         public FlagConfiguration(int limit) {
             this.limit = limit;
+        }
+
+        public FlagConfiguration(Collection<Flag.Country> coll) {
+            this.coll = coll;
+            this.limit = coll.size();
         }
     }
 
@@ -58,6 +68,7 @@ public interface DbManager {
             String getKeyName();
         }
 
+        private String orderBy;
         private Map<String, String> params = new HashMap<>();
 
         public String getParam(P param) {
@@ -70,6 +81,14 @@ public interface DbManager {
 
         public String deleteParam(P param) {
             return params.remove(param.getKeyName());
+        }
+
+        public String getOrderBy() {
+            return orderBy;
+        }
+
+        public void setOrderBy(P param) {
+            this.orderBy = param != null ? param.getKeyName() : null;
         }
 
         public Iterable<Map.Entry<String, String>> params() {
@@ -85,7 +104,8 @@ public interface DbManager {
         }
 
         public enum UserParam implements KeyNameProvider {
-            UID("uid"), EMAIL("email"), NAME("name"), SURNAME("surname"), CITY("city");
+            UID("uid"), EMAIL("email"), NAME("name"), SURNAME("surname"),
+            CITY("city"), SCORE("onlineScore");
 
             private String keyName;
 

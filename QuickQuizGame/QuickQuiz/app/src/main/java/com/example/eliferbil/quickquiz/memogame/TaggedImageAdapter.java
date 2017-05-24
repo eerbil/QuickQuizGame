@@ -1,6 +1,7 @@
 package com.example.eliferbil.quickquiz.memogame;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +21,11 @@ public class TaggedImageAdapter<T> extends BaseAdapter {
     protected
     @DrawableRes
     int[] mipmapIds;
+    Drawable[] drawables;
     private final int size;
     private ImageView[] images;
     private List<T> tags;
+    private boolean useDrawable = false;
 
 
     public TaggedImageAdapter(Context c, @DrawableRes int[] mipmapIds, List<T> tags) {
@@ -31,6 +34,15 @@ public class TaggedImageAdapter<T> extends BaseAdapter {
         this.size = mipmapIds.length;
         this.images = new ImageView[size];
         this.tags = tags;
+    }
+
+    public TaggedImageAdapter(Context c, Drawable[] drawables, List<T> tags) {
+        this.mContext = c;
+        this.drawables = drawables;
+        this.size = drawables.length;
+        this.images = new ImageView[size];
+        this.tags = tags;
+        this.useDrawable = true;
     }
 
 
@@ -62,7 +74,12 @@ public class TaggedImageAdapter<T> extends BaseAdapter {
             imageView = (ImageView) convertView;
         }
 
-        imageView.setImageResource(mipmapIds[position]);
+        if (useDrawable) {
+            imageView.setImageDrawable(drawables[position]);
+
+        } else {
+            imageView.setImageResource(mipmapIds[position]);
+        }
 
         if (imageView != images[position]) {
             images[position] = imageView;

@@ -3,7 +3,6 @@ package com.example.eliferbil.quickquiz;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -76,13 +75,11 @@ public class MainActivity extends AppCompatActivity implements TabletActivity, T
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
+
+        pushDetailFragment(new ScoreboardFragment(), false);
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
-        super.onSaveInstanceState(outState, outPersistentState);
-
-    }
 
     public int gameId = 0;
 
@@ -249,6 +246,9 @@ public class MainActivity extends AppCompatActivity implements TabletActivity, T
     @Override
     public void startOver() {
         finish();
+
+        Intent nextActivity = new Intent(this, MainActivity.class);
+        startActivity(nextActivity);
     }
 
     @Override

@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.eliferbil.quickquiz.R;
 import com.example.eliferbil.quickquiz.User;
+import com.example.eliferbil.quickquiz.database.DbManager;
 import com.example.eliferbil.quickquiz.database.ListenerAggregator;
 
 import java.util.List;
@@ -90,8 +92,8 @@ public class GameFragment extends Fragment implements Observer {
         pd.show();
 
         final int requestedCatCount = 3;
-        ListenerAggregator<List<Question>> aggListener =
-                new ListenerAggregator<>(requestedCatCount, new ResultListener<List<List<Question>>>() {
+        final ListenerAggregator<List<Question>> aggListener =
+                new ListenerAggregator<>(requestedCatCount, new DbManager.RunOnUIListener<>(act, new ResultListener<List<List<Question>>>() {
                     @Override
                     public void onComplete(List<List<Question>> data) {
                         bindButtonsToQuestions(act);
@@ -101,15 +103,19 @@ public class GameFragment extends Fragment implements Observer {
                     @Override
                     public void onError(String error) {
                         Toast.makeText(
-                                getContext(),
+                                act,
                                 "Error while getting questions:" + error,
                                 Toast.LENGTH_LONG).show();
                     }
-                });
-        GAME.getFoodQuestions(new CategoryResultListener(Category.FOOD, aggListener));
-        GAME.getHistoryQuestions(new CategoryResultListener(Category.HISTORY, aggListener));
-        GAME.getMusicQuestions(new CategoryResultListener(Category.MUSIC, aggListener));
-
+                }));
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                GAME.getFoodQuestions(new CategoryResultListener(Category.FOOD, aggListener));
+                GAME.getHistoryQuestions(new CategoryResultListener(Category.HISTORY, aggListener));
+                GAME.getMusicQuestions(new CategoryResultListener(Category.MUSIC, aggListener));
+            }
+        });
     }
 
     @Override

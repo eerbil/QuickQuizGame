@@ -157,7 +157,7 @@ public class Game {
     }
 
     public boolean isGameContinued() { // username girilince true olacak, sorular bitince false olacak, bittiği zaman scoreActivity açılacak
-        return user.getUsername() != null && !user.getUsername().isEmpty() && user.getQuestionsAnswered() < 15;
+        return user.getUsername() != null && !user.getUsername().isEmpty() && user.getQuestionsAnswered() < 2; // TODO 15
     }
 
     public void getHistoryQuestions(final ResultListener<List<Question>> listener) {
